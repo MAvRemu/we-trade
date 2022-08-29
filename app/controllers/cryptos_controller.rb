@@ -13,4 +13,8 @@ class CryptosController < ApplicationController
 
   def destroy
   end
+
+  def like
+  end
+
 end

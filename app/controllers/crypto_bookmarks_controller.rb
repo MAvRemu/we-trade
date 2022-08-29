@@ -1,0 +1,2 @@
+class CryptoBookmarksController < ApplicationController
+end

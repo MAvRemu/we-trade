@@ -1,0 +1,2 @@
+class PostBookmarksController < ApplicationController
+end
