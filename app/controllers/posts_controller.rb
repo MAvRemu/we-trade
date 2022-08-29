@@ -1,4 +1,29 @@
 class PostsController < ApplicationController
+
+  def show
+  end
+
+  def index
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+  def upvote
+  end
+
+  def unvote
+  end
+
+  def downvote
+  end
+
   def new
     @post = Post.new
   end
@@ -18,4 +43,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:content, :photo)
   end
+
 end
