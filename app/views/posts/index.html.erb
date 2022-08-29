@@ -1,0 +1,9 @@
+
+<% @posts.each do | p | %>
+<p>
+<%= image_tag p.user.photo, class: "avatar dropdown-toggle", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+<%= p.user.username %>
+<%= p.content %>
+<%= p.created_at %>
+</p>
+<% end %>
