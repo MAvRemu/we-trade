@@ -1,0 +1,5 @@
+<%= simple_form_for(@post) do |f| %>
+  <%= f.input :content, as: :string %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit %>
+<% end %>
