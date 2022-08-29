@@ -1,0 +1,2 @@
+class CryptoCommentsController < ApplicationController
+end
