@@ -18,9 +18,6 @@ class PostsController < ApplicationController
   def upvote
   end
 
-  def unvote
-  end
-
   def downvote
   end
 
