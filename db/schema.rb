@@ -10,9 +10,130 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_29_121848) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_29_123349) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "squad_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["squad_id"], name: "index_chatrooms_on_squad_id"
+  end
+
+  create_table "crypto_bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "crypto_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crypto_id"], name: "index_crypto_bookmarks_on_crypto_id"
+    t.index ["user_id"], name: "index_crypto_bookmarks_on_user_id"
+  end
+
+  create_table "crypto_comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.bigint "crypto_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crypto_id"], name: "index_crypto_comments_on_crypto_id"
+    t.index ["user_id"], name: "index_crypto_comments_on_user_id"
+  end
+
+  create_table "crypto_ratings", force: :cascade do |t|
+    t.integer "rating"
+    t.bigint "user_id", null: false
+    t.bigint "crypto_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crypto_id"], name: "index_crypto_ratings_on_crypto_id"
+    t.index ["user_id"], name: "index_crypto_ratings_on_user_id"
+  end
+
+  create_table "cryptos", force: :cascade do |t|
+    t.string "name"
+    t.string "ticker"
+    t.float "price"
+    t.float "market_cap"
+    t.integer "rank"
+    t.float "volume_24h"
+    t.float "price_1d"
+    t.float "price_1w"
+    t.float "price_1m"
+    t.float "price_1y"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "squad_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["squad_id"], name: "index_memberships_on_squad_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "post_bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_bookmarks_on_post_id"
+    t.index ["user_id"], name: "index_post_bookmarks_on_user_id"
+  end
+
+  create_table "post_comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "post_comment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_comment_id"], name: "index_post_comments_on_post_comment_id"
+    t.index ["post_id"], name: "index_post_comments_on_post_id"
+    t.index ["user_id"], name: "index_post_comments_on_user_id"
+  end
+
+  create_table "post_votes", force: :cascade do |t|
+    t.boolean "upvote"
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_votes_on_post_id"
+    t.index ["user_id"], name: "index_post_votes_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "content"
+    t.bigint "squad_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["squad_id"], name: "index_posts_on_squad_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "squad_messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chatroom_id", null: false
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_squad_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_squad_messages_on_user_id"
+  end
+
+  create_table "squads", force: :cascade do |t|
+    t.boolean "public"
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_squads_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +148,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_121848) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chatrooms", "squads"
+  add_foreign_key "crypto_bookmarks", "cryptos"
+  add_foreign_key "crypto_bookmarks", "users"
+  add_foreign_key "crypto_comments", "cryptos"
+  add_foreign_key "crypto_comments", "users"
+  add_foreign_key "crypto_ratings", "cryptos"
+  add_foreign_key "crypto_ratings", "users"
+  add_foreign_key "memberships", "squads"
+  add_foreign_key "memberships", "users"
+  add_foreign_key "post_bookmarks", "posts"
+  add_foreign_key "post_bookmarks", "users"
+  add_foreign_key "post_comments", "post_comments"
+  add_foreign_key "post_comments", "posts"
+  add_foreign_key "post_comments", "users"
+  add_foreign_key "post_votes", "posts"
+  add_foreign_key "post_votes", "users"
+  add_foreign_key "posts", "squads"
+  add_foreign_key "posts", "users"
+  add_foreign_key "squad_messages", "chatrooms"
+  add_foreign_key "squad_messages", "users"
+  add_foreign_key "squads", "users"
 end
