@@ -164,6 +164,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_140742) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.boolean "admin", default: false, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "username", null: false
