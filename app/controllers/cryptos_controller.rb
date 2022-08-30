@@ -28,6 +28,7 @@ class CryptosController < ApplicationController
     @crypto = Crypto.find(params[:id])
     authorize @crypto
     @rating = @crypto.crypto_ratings.sum(:rating).to_f / @crypto.crypto_ratings.size
+    @comment = CryptoComment.new
   end
 
   def new
