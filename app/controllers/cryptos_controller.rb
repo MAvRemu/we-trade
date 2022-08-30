@@ -1,6 +1,6 @@
 class CryptosController < ApplicationController
   def index
-
+    @cryptos = policy_scope(Crypto)
     if params[:filter] == "rank"
       @cryptos = Crypto.order(:rank)
     elsif params[:filter] == "comments"
@@ -25,6 +25,7 @@ class CryptosController < ApplicationController
   end
 
   def show
+
   end
 
   def new
@@ -38,5 +39,7 @@ class CryptosController < ApplicationController
 
   def like
   end
+
+  private
 
 end

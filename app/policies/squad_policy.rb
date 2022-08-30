@@ -26,5 +26,7 @@ class SquadPolicy < ApplicationPolicy
     true
   end
 
-
+  def join?
+    true
+  end
 end

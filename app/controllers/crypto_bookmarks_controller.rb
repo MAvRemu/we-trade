@@ -7,4 +7,7 @@ class CryptoBookmarksController < ApplicationController
 
   def destroy
   end
+
+  private
+
 end
