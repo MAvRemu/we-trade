@@ -13,6 +13,4 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :squads, through: :memberships
   has_one_attached :photo
-
-
 end

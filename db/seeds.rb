@@ -1,13 +1,43 @@
 require "open-uri"
+require "json"
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+#methods called below
+def download_cryptos
 
+  Crypto.destroy_all
+  url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100"
+  cryptos_serialized = URI.open(url).read
+  cryptos = JSON.parse(cryptos_serialized)
+  output = []
+
+  cryptos.each do |c|
+    output << Crypto.create!(id_name: c["id"], name: c["name"], ticker: c["symbol"], price: c["current_price"], market_cap: c["market_cap"] , rank: c["market_cap_rank"], volume_24h: c["total_volume"], price_1d: c["price_change_percentage_24h"], image_url: c["image"])
+  end
+  output
+end
+
+def generate_crypto_comments(cryptos, marius)
+  CryptoComment.destroy_all
+
+  cryptos.each do |c|
+    rand(2..10).times do
+      CryptoComment.create!(user: marius, crypto: c, content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+    end
+  end
+end
+
+def generate_crypto_ratings(cryptos, marius)
+  CryptoRating.destroy_all
+
+  cryptos.each do |c|
+    rand(2..10).times do
+      CryptoRating.create!(user: marius, crypto: c, rating: rand(2..5))
+    end
+  end
+end
+
+
+# main seeds
 Post.destroy_all
 User.destroy_all
 
@@ -32,3 +62,12 @@ Post.create!(user: tan, content: "My reasons why Bitcoin is the only blockchain 
 Post.create!(user: mantas, content: "ETH 2.0 why is it important and how can we as traders benefit?")
 Post.create!(user: mantas, content: "The Metaverse, and my cryptos I am keeping an eye one ;)")
 puts "created posts"
+
+cryptos = download_cryptos
+puts "cryptos created"
+
+generate_crypto_comments(cryptos, marius)
+puts "cryptos comments created"
+
+generate_crypto_ratings(cryptos, marius)
+puts "cryptos ratings created"
