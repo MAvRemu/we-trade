@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @posts = policy_scope(Post)
   end
 
   def edit

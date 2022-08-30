@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema[7.0].define(version: 2022_08_30_142720) do
+=======
 ActiveRecord::Schema[7.0].define(version: 2022_08_30_125106) do
+>>>>>>> c80449551b6edb24b463433b4c5c7dfcc00eb815
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +68,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_125106) do
     t.bigint "crypto_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "crypto_comment_id"
+    t.index ["crypto_comment_id"], name: "index_crypto_comments_on_crypto_comment_id"
     t.index ["crypto_id"], name: "index_crypto_comments_on_crypto_id"
     t.index ["user_id"], name: "index_crypto_comments_on_user_id"
   end
@@ -186,6 +192,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_125106) do
   add_foreign_key "chatrooms", "squads"
   add_foreign_key "crypto_bookmarks", "cryptos"
   add_foreign_key "crypto_bookmarks", "users"
+  add_foreign_key "crypto_comments", "crypto_comments"
   add_foreign_key "crypto_comments", "cryptos"
   add_foreign_key "crypto_comments", "users"
   add_foreign_key "crypto_ratings", "cryptos"
