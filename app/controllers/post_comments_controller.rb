@@ -5,4 +5,6 @@ class PostCommentsController < ApplicationController
   def destroy
   end
 
+  private
+
 end

@@ -4,4 +4,7 @@ class CryptoCommentsController < ApplicationController
 
   def destroy
   end
+
+  private
+
 end
