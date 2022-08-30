@@ -1,0 +1,32 @@
+<h1>Cryptos</h1>
+
+<form action="/contact" method="get">
+  <input type="text" name="member" placeholder="Who are you looking for?">
+  <input type="submit">
+</form>
+
+<div class="d-flex">
+<h4 class="m-2">Hot</h4>
+<h4 class="m-2">Rate</h4>
+<h4 class="m-2">Votes</h4>
+<h4 class="m-2">Comments</h4>
+<h4 class="m-2">Rank</h4>
+</div>
+
+<br>
+<% @cryptos.each do |c| %>
+<div class="d-flex">
+  <%= image_tag c.image_url, class: "crypto-logo" %>
+  <div>
+    <h5 class="me-2"><%= c.name %></h5>
+    <h5 class="me-2"><%= c.ticker %></h5>
+    <h5 class="me-2"><%= c.price %></h5>
+  </div>
+  <div>
+    <h5><%= c.rank %></h5>
+    <h5><%= c.crypto_comments.count %></h5>
+    <h5><%= c.crypto_ratings.sum(:rating).to_f/c.crypto_ratings.size %></h5>
+  </div>
+</div>
+<br>
+<% end %>
