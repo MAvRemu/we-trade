@@ -22,7 +22,7 @@
     <h5>comment count: <%= c.crypto_comments.count %></h5>
     <h5>rate average:<%= c.crypto_ratings.sum(:rating).to_f/c.crypto_ratings.size %></h5>
     <h5>rate votes:<%= c.crypto_ratings.count %></h5>
-    <h5>latest comment: <%= time_ago_in_words(c.crypto_comments.last.created_at.to_datetime) %></h5>
+    <h5>latest comment: <%= time_ago_in_words(c.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %></h5>
   </div>
 </div>
 <br>
