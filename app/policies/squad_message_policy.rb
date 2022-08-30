@@ -5,9 +5,10 @@ class SquadMessagePolicy < ApplicationPolicy
       sqs = user.squads
       user.admin? ? scope.all : scope.where(sqs.include?(:chatroom.squad))
     end
-
-    def create?
-      (record.chatroom.users).include?(user)
-    end
   end
+
+  def create?
+    true
+  end
+
 end

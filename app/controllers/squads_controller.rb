@@ -6,6 +6,7 @@ class SquadsController < ApplicationController
 
   def show
     @squad = Squad.find_by_id(params[:id])
+    @squad_message = SquadMessage.new()
     authorize @squad
   end
 
