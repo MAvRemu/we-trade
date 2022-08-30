@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2022_08_30_142720) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2022_08_30_125106) do
+>>>>>>> c80449551b6edb24b463433b4c5c7dfcc00eb815
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_142720) do
   end
 
   create_table "chatrooms", force: :cascade do |t|
-    t.bigint "squad_id", null: false
+    t.bigint "squad_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["squad_id"], name: "index_chatrooms_on_squad_id"
@@ -164,6 +168,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_142720) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "private", default: false
+    t.boolean "open", default: true
     t.index ["user_id"], name: "index_squads_on_user_id"
   end
 

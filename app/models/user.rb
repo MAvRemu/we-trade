@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :crypto_ratings, dependent: :destroy
   has_many :post_votes, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :memberships
   has_many :squads, through: :memberships
   has_one_attached :photo
 end
