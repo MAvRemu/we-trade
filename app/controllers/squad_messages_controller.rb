@@ -1,4 +1,7 @@
 class SquadMessagesController < ApplicationController
 
-  def
+  def create
+  end
+
+
 end

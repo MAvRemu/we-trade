@@ -1,5 +1,7 @@
 class SquadsController < ApplicationController
   def index
+    @squads = policy_scope(Squad)
+
   end
 
   def show
@@ -13,4 +15,10 @@ class SquadsController < ApplicationController
 
   def destroy
   end
+
+  def join
+  end
+
+  private
+
 end

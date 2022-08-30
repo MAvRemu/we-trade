@@ -1,5 +1,5 @@
 class Squad < ApplicationRecord
-  has_many :users
+  has_many :users, through: :memberships
   belongs_to :user
   has_one :chatroom, dependent: :destroy
 

@@ -5,4 +5,7 @@ class MembershipsController < ApplicationController
 
   def destroy
   end
+
+  private
+
 end
