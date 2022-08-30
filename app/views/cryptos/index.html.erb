@@ -13,7 +13,7 @@
 <div class="d-flex">
   <%= image_tag c.image_url, class: "crypto-logo" %>
   <div>
-    <h5 class="me-2">name: <%= c.name %></h5>
+    <h5 class="me-2">name: <%= link_to c.name, crypto_path(c) %></h5>
     <h5 class="me-2">ticker: <%= c.ticker %></h5>
     <h5 class="me-2">price: <%= c.price %></h5>
   </div>
