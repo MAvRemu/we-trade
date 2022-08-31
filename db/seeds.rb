@@ -79,14 +79,15 @@ puts "creating squads"
 c_t = Chatroom.create()
 c_m = Chatroom.create()
 
+
 t = Squad.create!(title: "Ssup hoe", description: "BTC 100,000", user: tan, chatroom: c_t)
+puts "yas"
 m = Squad.create!(title: "E-money, reloaded", description: "We're a group of people trying to get rich quick", user: mantas, chatroom: c_m)
 
 puts "populating squads"
 
-Membership.create!(squad: t, user: tan)
-Membership.create!(squad: t, user: marius)
-Membership.create!(squad: t, user: mantas)
 
-
-Membership.create!(squad: m, user: mantas)
+Membership.create(squad: t, user: tan)
+Membership.create(squad: t, user: marius)
+Membership.create(squad: t, user: mantas)
+Membership.create(squad: m, user: mantas)

@@ -9,6 +9,8 @@ gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 gem "pundit"
 gem "devise"
 gem "cloudinary"
+gem "sidekiq"
+gem "sidekiq-failures", "~> 1.0"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
