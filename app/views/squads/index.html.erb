@@ -5,29 +5,33 @@
 
   <div div class="my-3">
     <h2>My Squads</h2>
-    <div>
-      <% (current_user.squads).each do |s| %>
-        <%= link_to squad_path(s), class: "squad-card-typing" do %>
-          <div class="mx-2">
-            <h4><%= s.title %></h4>
-            <h5> <%= s.description %></h5>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+      <div class="squad-card container">
+        <div class="row">
+          <% (current_user.squads).each do |s| %>
+            <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: #4A4A4A;" do  %>
+              <div class="mx-2">
+                <h4><%= s.title %></h4>
+                <h5 class="squad-description"> <%= s.description %></h5>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
   </div>
 
   <div div class="my-3">
     <h2>Open Squads</h2>
-    <div class="d-flex">
-      <%(Squad.where(open: true)).each do |s| %>
-        <%= link_to squad_path(s), class: "squad-card-typing" do %>
+    <div class="squad-card container">
+      <div class="row">
+        <%(Squad.where(open: true)).each do |s| %>
+        <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: #4A4A4A;" do %>
           <div class="mx-2">
             <h4><%= s.title %></h4>
-            <h5><%= s.description %></h5>
+            <h5 class="squad-description"><%= s.description %></h5>
           </div>
         <% end %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
