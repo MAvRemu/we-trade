@@ -40,6 +40,8 @@ end
 # main seeds
 CryptoComment.destroy_all
 Post.destroy_all
+Membership.destroy_all
+Squad.destroy_all
 User.destroy_all
 
 marius = User.new(email: "marius@hotmail.com", username: "Marius", password: "marius", admin: true)
