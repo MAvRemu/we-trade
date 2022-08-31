@@ -17,7 +17,7 @@ def download_cryptos
 end
 
 def generate_crypto_comments(cryptos, marius)
-  CryptoComment.destroy_all
+
 
   cryptos.each do |c|
     rand(2..10).times do
@@ -38,7 +38,10 @@ end
 
 
 # main seeds
+CryptoComment.destroy_all
 Post.destroy_all
+Membership.destroy_all
+Squad.destroy_all
 User.destroy_all
 
 marius = User.new(email: "marius@hotmail.com", username: "Marius", password: "marius", admin: true)
