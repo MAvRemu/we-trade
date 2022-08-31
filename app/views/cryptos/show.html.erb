@@ -11,16 +11,21 @@
       <% (5-@rating.round(0)).times do %>
       <%= image_tag("d_empty",  class: "rating-diamond") %>
       <% end %>
-      <h3> (<%= @rating.round(1) %>)</h3>
+      <h3>  <%= @rating.round(1) %></h3>
     </div>
   </div>
 
-  <div class="d-flex me-5 mb-5 col-11">
-    <h4>rank: #<%= @crypto.rank %></h4>
-    <h4 class="me-2">price: €<%= @crypto.price.round(0) %></h4>
-    <h4>comment count: <%= @crypto.crypto_comments.count %></h4>
-    <h4>rate votes:<%= @crypto.crypto_ratings.count %></h4>
-    <h4>latest comment: <%= time_ago_in_words(@crypto.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %></h4>
+  <div class="d-flex me-5 mb-5 col-11 crypto-details mt-3 align-items-center">
+    <%= image_tag "rank" %>
+    <h3>#<%= @crypto.rank %></h3>
+    <%= image_tag "dollar" %>
+    <h3 class="me-2"><%= @crypto.price.round(0) %></h3>
+    <%= image_tag "votes" %>
+    <h3><%= @crypto.crypto_ratings.count %></h3>
+    <%= image_tag "comments" %>
+    <h3> <%= @crypto.crypto_comments.count %> <%= time_ago_in_words(@crypto.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %></h3>
+    <%= image_tag "mcap" %>
+    <h3><%= @crypto.mcap_short %></h3>
   </div>
 
 
@@ -41,7 +46,7 @@
 
 
   <%= simple_form_for [@crypto, @comment], html: { class: "p-3 rounded-4 bg-white"} do |c| %>
-    <%= c.input :content, as: :rich_text_area, placeholder: 'your comment....', label: 'Comment' %>
+    <%= c.input :content, as: :text, placeholder: 'your comment....', label: 'Comment' %>
     <%= c.submit 'Create' %>
   <% end %>
 </div>
