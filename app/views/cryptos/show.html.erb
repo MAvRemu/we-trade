@@ -15,12 +15,15 @@
     </div>
   </div>
 
-  <div class="d-flex me-5 mb-5 col-11">
-    <h4>rank: #<%= @crypto.rank %></h4>
-    <h4 class="me-2">price: €<%= @crypto.price.round(0) %></h4>
-    <h4>comment count: <%= @crypto.crypto_comments.count %></h4>
-    <h4>rate votes:<%= @crypto.crypto_ratings.count %></h4>
-    <h4>latest comment: <%= time_ago_in_words(@crypto.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %></h4>
+  <div class="d-flex me-5 mb-5 col-11 crypto-details">
+    <%= image_tag "rank" %>
+    <h4>#<%= @crypto.rank %></h4>
+    <%= image_tag "dollar" %>
+    <h4 class="me-2"><%= @crypto.price.round(0) %></h4>
+    <%= image_tag "votes" %>
+    <h4><%= @crypto.crypto_ratings.count %></h4>
+    <%= image_tag "comments" %>
+    <h4> <%= time_ago_in_words(@crypto.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %></h4>
   </div>
 
 
