@@ -18,7 +18,7 @@ class CryptoCommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:crypto_comment).permit(:content)
+    params.require(:crypto_comment).permit(:content, :content_trix)
   end
 
 end
