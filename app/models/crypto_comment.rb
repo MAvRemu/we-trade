@@ -4,6 +4,7 @@ class CryptoComment < ApplicationRecord
   has_one :crypto_comment, required: false, dependent: :destroy
   validates :user, presence: true
   validates :crypto, presence: true
-  validates :content, presence: true
+  validates :content_trix, presence: true
+  has_rich_text :content_trix
 
 end
