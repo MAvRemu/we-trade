@@ -81,9 +81,8 @@ m = Squad.create!(title: "E-money, reloaded", description: "We're a group of peo
 
 puts "populating squads"
 
-Membership.create!(squad: t, user: tan)
-Membership.create!(squad: t, user: marius)
-Membership.create!(squad: t, user: mantas)
-
-
-Membership.create!(squad: m, user: mantas)
+raise
+Membership.create(squad: t, user: tan)
+Membership.create(squad: t, user: marius)
+Membership.create(squad: t, user: mantas)
+Membership.create(squad: m, user: mantas)
