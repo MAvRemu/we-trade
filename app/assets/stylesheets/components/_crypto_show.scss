@@ -18,8 +18,14 @@
 }
 
 .crypto-details {
-  img {
+  height: 100px;
+  h3 {
+    margin: 0;
+  }
 
-    height: 50px;
+  img {
+    height: 40px;
+    filter: opacity(70%);
+    margin: 0 10px 0 25px;
   }
 }
