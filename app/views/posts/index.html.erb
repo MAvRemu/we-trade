@@ -1,18 +1,18 @@
 
 <div class="d-flex justify-content-md-center posts-filters mb-3" >
-  <div class="p-3 rounded-3 hidden-example <%= params[:filter] == "new" ? "bcg-lightgrey" : "" %>">
+  <div class="p-2 rounded-3 hidden-example <%= params[:filter] == "new" ? "bcg-lightgrey" : "" %>">
     <%= image_tag "new.png" %>
     <%= link_to "New",  posts_path(filter: "new")%>
   </div>
-  <div class="p-3 rounded-3 hidden-example <%= params[:filter] == "hot" ? "bcg-lightgrey" : "" %>">
+  <div class="p-2 rounded-3 hidden-example <%= params[:filter] == "hot" ? "bcg-lightgrey" : "" %>">
     <%= image_tag "hot.png" %>
     <%= link_to "Hot",  posts_path(filter: "hot")%>
   </div>
-  <div class="p-3 rounded-3 hidden-example <%= params[:filter] == "votes" ? "bcg-lightgrey" : "" %>">
+  <div class="p-2 rounded-3 hidden-example <%= params[:filter] == "votes" ? "bcg-lightgrey" : "" %>">
     <%= image_tag "votes.png" %>
     <%= link_to "Votes",  posts_path(filter: "votes")%>
   </div>
-  <div class="p-3 rounded-3 hidden-example <%= params[:filter] == "comments" ? "bcg-lightgrey" : "" %>">
+  <div class="p-2 rounded-3 hidden-example <%= params[:filter] == "comments" ? "bcg-lightgrey" : "" %>">
     <%= image_tag "comments.png" %>
     <%= link_to "Comments",  posts_path(filter: "comments")%>
   </div>
