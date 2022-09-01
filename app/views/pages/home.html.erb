@@ -1,6 +1,5 @@
 <% if !user_signed_in?  %>
-    <video id="banner_video" autoplay loop plays-inline muted src="assets/home.mov" type="video/mp4"> </video>
-  <div class="banner">
+  <%= video_tag "home.mov", autoplay: :autoplay, loop: :loop, muted: :muted, id: "banner_video"  %>
     <div class="banner-container">
       <div class="wetrade-banner">
         <h1 style="font-size: 65px;">WeTrade</h1>
@@ -20,5 +19,3 @@
 
 <% else %>
 <%end  %>
-
-  <%= video_tag "home.mov" %>
