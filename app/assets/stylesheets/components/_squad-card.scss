@@ -1,16 +1,16 @@
 .squad-card-typing{
-  height: 250px;
-  margin: 10px 10px 0px 0px;
-  width: 230px;
+  height: 80%;
+
+  width: 210px;
   text-decoration: none;
   text-overflow: ellipsis;
   color: rgb(73, 56, 67);
-  padding: 16px 8px;
-  border-radius: 8px;
+
+
   font-weight: lighter;
   opacity: 0.6;
   transition: opacity 0.3s ease;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
 }
 
 .squad-card{
@@ -19,7 +19,7 @@
 
 .squad-description{
   font-size: 15px;
-  height: 40%;
+  height: 50%;
   word-wrap:break-word;
   width: 100%;
   overflow: scroll;
@@ -56,4 +56,13 @@
   background-color: rgb(73, 56, 67);
   color: rgb(97, 152, 142);
   border-radius: 5px;
+}
+.squad-card-container{
+  padding: 16px 8px;
+  border-radius: 8px;
+  height: 250px;
+  margin: 10px 10px 0px 0px;
+  width: 230px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
 }
