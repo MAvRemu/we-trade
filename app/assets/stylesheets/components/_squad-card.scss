@@ -1,19 +1,16 @@
 .squad-card-typing{
-  height: 50vh;
-  margin: 10px 10px 0px 0px;
-  width: 20vw;
+  height: 80%;
+
+  width: 210px;
   text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
   color: rgb(73, 56, 67);
 
-  padding: 8px 24px;
-  border-radius: 8px;
+
   font-weight: lighter;
   opacity: 0.6;
   transition: opacity 0.3s ease;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
 }
 
 .squad-card{
@@ -22,15 +19,50 @@
 
 .squad-description{
   font-size: 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
+  height: 50%;
+  word-wrap:break-word;
+  width: 100%;
+  overflow: scroll;
+  text-decoration: none;
+  color: black;
 }
+
 
 
 
 
 .squad-card-typing:hover {
   opacity: 1;
+}
+
+.squad-avatar{
+  width: 13%;
+  object-fit: fill;
+  border-radius: 50%;
+}
+
+.joinbutton{
+  width: 100%;
+  background-color: rgb(97, 152, 142);
+  color: white;
+  border: 0px;
+  margin-top: 16px;
+  transition: 0.5s ease;
+  border-radius: 2px;
+}
+
+.joinbutton:hover{
+
+  background-color: rgb(73, 56, 67);
+  color: rgb(97, 152, 142);
+  border-radius: 5px;
+}
+.squad-card-container{
+  padding: 16px 8px;
+  border-radius: 8px;
+  height: 250px;
+  margin: 10px 10px 0px 0px;
+  width: 230px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
 }
