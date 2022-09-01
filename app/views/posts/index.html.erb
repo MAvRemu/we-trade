@@ -1,9 +1,27 @@
 
+<div class="d-flex cryptos-filters">
+<%= link_to "New",  posts_path(filter: "new"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "new"}"%>
+<%= link_to "Hot",  posts_path(filter: "hot"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "hot"}"%>
+<%= link_to "Votes",  posts_path(filter: "votes"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "votes"}"%>
+<%= link_to "Comments",  posts_path(filter: "comments"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "comments"}"%>
+</div>
+
+
 <% @posts.each do | p | %>
-<p>
-<%= image_tag p.user.photo, class: "avatar dropdown-toggle", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-<%= p.user.username %>
-<%= p.content %>
-<%= p.created_at %>
-</p>
+<div class="row justify-content-md-center mb-4">
+  <div class="d-flex comment col-9 p-3 rounded-4">
+    <%= cl_image_tag p.user.photo.key, class: "comment-avatar me-3" %>
+    <div>
+      <div class="d-flex align-items-center">
+        <h4 class="m-0 me-3"><%= p.user.username %></h4>
+        <h5 class="me-auto"><%= time_ago_in_words(p.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
+        <h6> post_comments: <%=  p.post_comments.count  %></h6>
+        <h6>post_participants: <%= p.post_comments.map {|c| c.user}.uniq.count  %></h6>
+        <h6>post_votes: <%= p.post_votes.count  %></h6>
+      </div>
+      <%= p.content %>
+      <%= p.content %>
+    </div>
+  </div>
+</div>
 <% end %>

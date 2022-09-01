@@ -4,8 +4,31 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
     @posts = policy_scope(Post)
+    if params[:filter] == "new"
+      @posts = Post.all.sort do |a, b|
+        b.created_at <=> a.created_at
+      end
+    elsif params[:filter] == "comments"
+      @posts = Post.all.sort do |a, b|
+        b.post_comments.count <=> a.post_comments.count
+      end
+    elsif params[:filter] == "votes"
+      @posts = Post.all.sort do |a, b|
+        b.post_votes.count <=> a.post_votes.count
+      end
+    elsif params[:filter] == "hot"
+      @posts = Post.all.sort do |a, b|
+        if b.post_comments.last.present? && a.post_comments.last.present?
+          output = b.post_comments.last.created_at <=> a.post_comments.last.created_at
+        else
+          output = -1
+        end
+        output
+      end
+    else
+      @posts = Post.all
+    end
   end
 
   def edit
