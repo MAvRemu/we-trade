@@ -11,7 +11,23 @@
             <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: #4A4A4A;" do  %>
               <div class="mx-2">
                 <h4 class="eggplant-text"><%= s.title %></h4>
-                <h5 class="squad-description eggplant-text"> <%= s.description %></h5>
+                <div style="width: 100%; height: 3em;" class="d-flex justify-content-around align-items-center">
+                  <%= cl_image_tag s.user.photo.key, class: "squad-avatar" %>
+                  <% (0...6).each do |u| %>
+                    <% if s.users[u] %>
+                      <% if s.users[u] != s.user  %>
+                        <% if u != 5  %>
+                          <%= cl_image_tag s.users[u].photo.key, class: "squad-avatar" %>
+                        <% else  %>
+                          <%= cl_image_tag s.users[u].photo.key, class: "squad-avatar" %>
+                        <% end  %>
+                      <% end %>
+                    <% else  %>
+                      <%= image_tag("blank-profile-picture-973460_960_720.png", class: "squad-avatar") %>
+                    <% end  %>
+                  <% end %>
+                </div>
+                <h5 class="squad-description eggplant-text my-3"> <%= s.description %></h5>
               </div>
             <% end %>
           <% end %>
@@ -24,15 +40,33 @@
     <div class="squad-card container">
       <div class="row">
         <%(Squad.where(open: true)).each do |s| %>
-        <% if !s.users.include?(current_user) %>
-          <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: $eggplant;" do %>
-            <div class="mx-2">
-              <h4 class="eggplant-text"><%= s.title %></h4>
-              <h5 class="squad-description eggplant-text"><%= s.description %></h5>
-            </div>
+          <% if !s.users.include?(current_user) %>
+
+            <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: $eggplant; word-wrap: normal; text-decoration:none;" do %>
+              <div class="mx-2">
+                <h4 class="eggplant-text"><%= s.title %></h4>
+                  <div style="width: 100%; height: 3em;" class="d-flex justify-content-around align-items-center">
+                    <%= cl_image_tag s.user.photo.key, class: "squad-avatar" %>
+                    <% (0...6).each do |u| %>
+                      <% if s.users[u] %>
+                        <% if s.users[u] != s.user  %>
+                          <% if u != 5  %>
+                            <%= cl_image_tag s.users[u].photo.key, class: "squad-avatar" %>
+                          <% else  %>
+                            <%= cl_image_tag s.users[u].photo.key, class: "squad-avatar" %>
+                          <% end  %>
+                        <% end %>
+                      <% else  %>
+                        <%= image_tag("blank-profile-picture-973460_960_720.png", class: "squad-avatar") %>
+                      <% end  %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="squad-description"><%= s.description %></div>
+              <button class="joinbutton"> Join</button>
+            <% end %>
           <% end %>
-        <% end %>
-      <% end %>
+       <% end %>
       </div>
     </div>
   </div>
