@@ -5,11 +5,18 @@
     <div class="d-flex align-items-center crypto-show">
       <h1 class="me-3"><%=  @crypto.name%></h1>
       <h2 class="me-3"><%= @crypto.ticker.upcase %></h2>
-      <% @rating.round(0).times do %>
-      <%= image_tag("d_full.png", class: "rating-diamond") %>
+      <% @rating.floor.times do %>
+      <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
       <% end %>
-      <% (5-@rating.round(0)).times do %>
-      <%= image_tag("d_empty.png",  class: "rating-diamond") %>
+      <% if @rating.modulo(1) >= 0.25 && @rating.modulo(1) < 0.75 %>
+      <%= image_tag("d_50.png", class: "rating-diamond m-1") %>
+      <% elsif @rating.modulo(1) >= 0.75 %>
+      <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
+      <% else %>
+      <%= image_tag("d_empty.png", class: "rating-diamond m-1 diamond-grayscale") %>
+      <% end %>
+      <% (4-@rating.floor).times do %>
+      <%= image_tag("d_empty.png",  class: "rating-diamond m-1 diamond-grayscale") %>
       <% end %>
       <h3>  <%= @rating.round(1) %></h3>
     </div>
