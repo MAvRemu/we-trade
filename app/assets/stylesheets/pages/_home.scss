@@ -57,3 +57,23 @@
   top:0;
   z-index: -1;
 }
+.nodec{
+  text-decoration: none;
+  color:aqua;
+}
+.newsWidget
+.news{
+  align-content:center;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  position: relative;
+}
+.byebanner{
+  position:absolute;
+  height: 3rem;
+  width: 100%;
+  top: 0px;
+  z-index: 2147483647;
+  background-color: rgb(216, 214, 214);;
+}
