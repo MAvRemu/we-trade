@@ -25,20 +25,34 @@ def generate_crypto_ratings(cryptos, marius)
   end
 end
 
-def generate_post_comments(posts, marius)
+def generate_posts(array)
+  content = [
+    "Why are DeFi protocols so important for the crypto industry?",
+    "Who is Satisho satoshi nakamoto?",
+    "Tokenomics! My overview on why tokenomics should not be forgotten when launching a crypto currency",
+    "My reasons why Bitcoin is the only blockchain that needs to exits",
+    "ETH 2.0 why is it important and how can we as traders benefit?",
+    "The Metaverse, and my cryptos I am keeping an eye one ;)"
+  ]
+  20.times do
+    Post.create!(user: array.sample, content: content.sample)
+  end
+end
+
+def generate_post_comments(posts, array)
   posts.each do |p|
-    rand(1..5).times do
-      PostComment.create!(user: marius, post: p, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div><ul><li>ut labore et dolore magna aliqua.&nbsp;</li><li>Ut enim ad minim veniam,&nbsp;</li><li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li></ul><div><a href="https://www.google.com/">Duis aute irure dolor in reprehenderit</a></div>')
+    rand(1..15).times do
+      PostComment.create!(user: array.sample, post: p, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div><ul><li>ut labore et dolore magna aliqua.&nbsp;</li><li>Ut enim ad minim veniam,&nbsp;</li><li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li></ul><div><a href="https://www.google.com/">Duis aute irure dolor in reprehenderit</a></div>')
     end
   end
 end
 
-def generate_post_votes(posts, marius)
+def generate_post_votes(posts, array)
   PostVote.destroy_all
 
   posts.each do |p|
-    rand(2..35).times do
-      PostVote.create!(user: marius, post: p, upvote: [1, 1, 1, -1, -1].sample)
+    rand(2..50).times do
+      PostVote.create!(user: array.sample, post: p, upvote: [1, 1, 1, -1].sample)
     end
   end
 end
@@ -56,29 +70,27 @@ User.destroy_all
 marius = User.new(email: "marius@hotmail.com", username: "Marius", password: "marius", admin: true)
 mantas = User.new(email: "mantas@hotmail.com", username: "Mantas", password: "mantas", admin: true)
 tan = User.new(email: "tan@hotmail.com", username: "Tan", password: "tantan", admin: true)
+tom = User.new(email: "tom@hotmail.com", username: "TOM", password: "tomtom", admin: true)
 
 marius.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1661782386/hjqrltjashi2omdr2wbw.jpg"), filename: "marius.jpg", content_type: "image/jpg")
 tan.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1661783149/hq4mhosbe1gjr0y4yunz.jpg"), filename: "tan.jpg", content_type: "image/jpg")
 mantas.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1661783176/il31crrwnmf4sdvqukwo.png"), filename: "mantas.png", content_type: "image/png")
+tom.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1662040477/s1raxphptwbmb4vbfzpb.jpg"), filename: "tom.jpg", content_type: "image/jpg")
 
+users_array = [marius, tan, mantas, tom]
 marius.save!
 tan.save!
 mantas.save!
 puts "created users"
 
-Post.create!(user: marius, content: "Why are DeFi protocols so important for the crypto industry?")
-Post.create!(user: marius, content: "Who is Satisho satoshi nakamoto?")
-Post.create!(user: tan, content: "Tokenomics! My overview on why tokenomics should not be forgotten when launching a crypto currency")
-Post.create!(user: tan, content: "My reasons why Bitcoin is the only blockchain that needs to exits")
-Post.create!(user: mantas, content: "ETH 2.0 why is it important and how can we as traders benefit?")
-Post.create!(user: mantas, content: "The Metaverse, and my cryptos I am keeping an eye one ;)")
+generate_posts(users_array)
 puts "created posts"
 
 posts = Post.all
-generate_post_comments(posts, marius)
+generate_post_comments(posts, users_array)
 puts "created post comments"
 
-generate_post_votes(posts, marius)
+generate_post_votes(posts, users_array)
 puts "created post votes"
 
 download_cryptos
