@@ -35,7 +35,7 @@ def generate_posts(array)
     "The Metaverse, and my cryptos I am keeping an eye one ;)"
   ]
   20.times do
-    Post.create!(user: array.sample, content: content.sample)
+    Post.create!(user: array.sample, content_trix: content.sample)
   end
 end
 

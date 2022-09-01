@@ -48,13 +48,15 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    authorize @post
   end
 
   def create
     @post = Post.new(post_params)
+    authorize @post
     @post.user = current_user
     if @post.save!
-      redirect_to wearable_path(@post)
+      redirect_to posts_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -63,7 +65,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :photo)
+    params.require(:post).permit(:content, :photo, :content_trix)
   end
 
 end
