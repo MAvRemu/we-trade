@@ -1,17 +1,17 @@
 <div class="container">
-  <div class="my-3">
+  <div class="my-3 eggplant-text">
     <h1>Squads</h1>
   </div>
 
   <div div class="my-3">
-    <h2>My Squads</h2>
+    <h2 class="eggplant-text">My Squads</h2>
       <div class="squad-card container">
         <div class="row">
           <% (current_user.squads).each do |s| %>
             <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: #4A4A4A;" do  %>
               <div class="mx-2">
-                <h4><%= s.title %></h4>
-                <h5 class="squad-description"> <%= s.description %></h5>
+                <h4 class="eggplant-text"><%= s.title %></h4>
+                <h5 class="squad-description eggplant-text"> <%= s.description %></h5>
               </div>
             <% end %>
           <% end %>
@@ -20,15 +20,17 @@
   </div>
 
   <div div class="my-3">
-    <h2>Open Squads</h2>
+    <h2 class="eggplant-text">Open Squads</h2>
     <div class="squad-card container">
       <div class="row">
         <%(Squad.where(open: true)).each do |s| %>
-        <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: #4A4A4A;" do %>
-          <div class="mx-2">
-            <h4><%= s.title %></h4>
-            <h5 class="squad-description"><%= s.description %></h5>
-          </div>
+        <% if !s.users.include?(current_user) %>
+          <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: $eggplant;" do %>
+            <div class="mx-2">
+              <h4 class="eggplant-text"><%= s.title %></h4>
+              <h5 class="squad-description eggplant-text"><%= s.description %></h5>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
       </div>
