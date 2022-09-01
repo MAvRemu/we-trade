@@ -37,8 +37,8 @@ def generate_post_votes(posts, marius)
   PostVote.destroy_all
 
   posts.each do |p|
-    rand(2..10).times do
-      PostVote.create!(user: marius, post: p, upvote: [true, true, true, false].sample)
+    rand(2..35).times do
+      PostVote.create!(user: marius, post: p, upvote: [1, 1, 1, -1, -1].sample)
     end
   end
 end

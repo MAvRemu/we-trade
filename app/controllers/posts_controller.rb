@@ -15,7 +15,7 @@ class PostsController < ApplicationController
       end
     elsif params[:filter] == "votes"
       @posts = Post.all.sort do |a, b|
-        b.post_votes.count <=> a.post_votes.count
+        b.post_votes.sum {|vote| vote.upvote } <=> a.post_votes.sum {|vote| vote.upvote }
       end
     elsif params[:filter] == "hot"
       @posts = Post.all.sort do |a, b|
