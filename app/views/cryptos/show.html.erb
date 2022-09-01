@@ -32,7 +32,7 @@
   <% @crypto.crypto_comments.order("created_at ASC").each do |c| %>
     <div class="row justify-content-md-center mb-4">
       <div class="d-flex comment col-12 p-3 rounded-4">
-        <%= image_tag c.user.photo, class: "comment-avatar me-3" %>
+        <%= cl_image_tag c.user.photo.key, class: "comment-avatar me-3" %>
         <h4 class="me-5"><%= c.user.username %></h4>
         <div class="me-auto">
           <h5><%= time_ago_in_words(c.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
