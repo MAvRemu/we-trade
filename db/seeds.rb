@@ -25,8 +25,29 @@ def generate_crypto_ratings(cryptos, marius)
   end
 end
 
+def generate_post_comments(posts, marius)
+  posts.each do |p|
+    rand(1..5).times do
+      PostComment.create!(user: marius, post: p, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div><ul><li>ut labore et dolore magna aliqua.&nbsp;</li><li>Ut enim ad minim veniam,&nbsp;</li><li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li></ul><div><a href="https://www.google.com/">Duis aute irure dolor in reprehenderit</a></div>')
+    end
+  end
+end
+
+def generate_post_votes(posts, marius)
+  PostVote.destroy_all
+
+  posts.each do |p|
+    rand(2..35).times do
+      PostVote.create!(user: marius, post: p, upvote: [1, 1, 1, -1, -1].sample)
+    end
+  end
+end
+
 # main seeds
 CryptoComment.destroy_all
+PostComment.destroy_all
+CryptoRating.destroy_all
+PostVote.destroy_all
 Post.destroy_all
 Membership.destroy_all
 Squad.destroy_all
@@ -53,15 +74,22 @@ Post.create!(user: mantas, content: "ETH 2.0 why is it important and how can we 
 Post.create!(user: mantas, content: "The Metaverse, and my cryptos I am keeping an eye one ;)")
 puts "created posts"
 
+posts = Post.all
+generate_post_comments(posts, marius)
+puts "created post comments"
+
+generate_post_votes(posts, marius)
+puts "created post votes"
+
 download_cryptos
-puts "cryptos created"
+puts "created cryptos"
 
 cryptos = Crypto.all
 generate_crypto_comments(cryptos, marius)
-puts "cryptos comments created"
+puts "created cryptos comments"
 
 generate_crypto_ratings(cryptos, marius)
-puts "cryptos ratings created"
+puts "created cryptos ratings"
 
 puts "creating squads"
 c_t = Chatroom.create

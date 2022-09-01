@@ -1,9 +1,42 @@
 
+<div class="d-flex justify-content-md-center posts-filters mb-3" >
+  <div class="p-2 rounded-3 hidden-example <%= params[:filter] == "new" ? "bcg-lightgrey" : "" %>">
+    <%= image_tag "new.png" %>
+    <%= link_to "New",  posts_path(filter: "new")%>
+  </div>
+  <div class="p-2 rounded-3 hidden-example <%= params[:filter] == "hot" ? "bcg-lightgrey" : "" %>">
+    <%= image_tag "hot.png" %>
+    <%= link_to "Hot",  posts_path(filter: "hot")%>
+  </div>
+  <div class="p-2 rounded-3 hidden-example <%= params[:filter] == "votes" ? "bcg-lightgrey" : "" %>">
+    <%= image_tag "votes.png" %>
+    <%= link_to "Votes",  posts_path(filter: "votes")%>
+  </div>
+  <div class="p-2 rounded-3 hidden-example <%= params[:filter] == "comments" ? "bcg-lightgrey" : "" %>">
+    <%= image_tag "comments.png" %>
+    <%= link_to "Comments",  posts_path(filter: "comments")%>
+  </div>
+</div>
+
+
 <% @posts.each do | p | %>
-<p>
-<%= image_tag p.user.photo, class: "avatar dropdown-toggle", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-<%= p.user.username %>
-<%= p.content %>
-<%= p.created_at %>
-</p>
+<div class="row justify-content-md-center mb-4">
+  <div class="d-flex comment col-7 p-3 rounded-3">
+    <%= cl_image_tag p.user.photo.key, class: "comment-avatar me-3" %>
+    <div style="width:100%">
+      <div class="d-flex align-items-center posts-post">
+        <h4 class="m-0 me-3"><%= p.user.username %></h4>
+        <h5 class="me-auto"><%= time_ago_in_words(p.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
+        <%= image_tag "votes.png" %>
+        <% upvotes = p.post_votes.sum {|vote| vote.upvote }   %>
+        <h6 class="<%= upvotes > 0 ? "font-color-green" : "font-color-red" %>"> <%= upvotes > 0 ? "+" : "" %><%= upvotes %></h6>
+        <%= image_tag "comments.png" %>
+        <h6><%=  p.post_comments.count  %></h6>
+        <%= image_tag "group.png" %>
+        <h6><%= p.post_comments.map {|c| c.user}.uniq.count  %></h6>
+      </div>
+      <p> <%= p.content %> <%= p.content %></p>
+    </div>
+  </div>
+</div>
 <% end %>

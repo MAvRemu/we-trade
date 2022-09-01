@@ -1,0 +1,38 @@
+.posts-post {
+  h6 {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  img {
+    height: 20px;
+    filter: opacity(40%);
+    margin: 0 10px 0 25px;
+  }
+
+}
+
+.posts-filters {
+  text-decoration: none;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  img {
+    height: 20px;
+    filter: opacity(40%);
+    margin: 0;
+  }
+}
+.bcg-lightgrey {
+  background-color:lightgrey;
+}
+
+.font-color-green {
+  color: rgb(0, 175, 0);
+}
+
+.font-color-red {
+  color: red;
+
+}

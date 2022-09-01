@@ -1,9 +1,9 @@
 class PostComment < ApplicationRecord
   belongs_to :user
   belongs_to :post
-  belongs_to :post_comment
-
-  validates :content, presence: true
+  validates :content_trix, presence: true
   validates :user, presence: true
   validates :post, presence: true
+
+  has_rich_text :content_trix
 end
