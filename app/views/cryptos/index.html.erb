@@ -7,7 +7,6 @@
 <%= link_to "Comments",  cryptos_path(filter: "comments"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "comments"}"%>
 <%= link_to "Rank",  cryptos_path(filter: "rank"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "rank"}"%>
 </div>
-
 <br>
 <% @cryptos.each do |c| %>
 <div class="d-flex">
