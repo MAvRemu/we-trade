@@ -2,6 +2,7 @@
 
   <%= simple_form_for(@post) do |f| %>
     <div class="form-inputs">
+    <%= f.input :title, as: :string %>
     <%= f.input :content_trix, as: :rich_text_area %>
     </div>
 
