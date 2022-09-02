@@ -35,7 +35,7 @@ def generate_posts(array)
     "The Metaverse, and my cryptos I am keeping an eye one ;)"
   ]
   20.times do
-    Post.create!(user: array.sample, content_trix: content.sample)
+    Post.create!(user: array.sample, title: content.sample, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div><ul><li>ut labore et dolore magna aliqua.&nbsp;</li><li>Ut enim ad minim veniam,&nbsp;</li><li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li></ul><div><a href="https://www.google.com/">Duis aute irure dolor in reprehenderit</a></div>' )
   end
 end
 

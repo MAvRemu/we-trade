@@ -1,59 +1,42 @@
 <div class="container">
 
-  <div class="d-flex">
+  <div class="d-flex mt-5">
     <%= image_tag @crypto.image_url, class: "crypto-logo-show me-3" %>
-    <div class="d-flex align-items-center crypto-show">
-      <h1 class="me-3"><%=  @crypto.name%></h1>
-      <h2 class="me-3"><%= @crypto.ticker.upcase %></h2>
-      <% @rating.floor.times do %>
-      <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
-      <% end %>
-      <% if @rating.modulo(1) >= 0.25 && @rating.modulo(1) < 0.75 %>
-      <%= image_tag("d_50.png", class: "rating-diamond m-1") %>
-      <% elsif @rating.modulo(1) >= 0.75 %>
-      <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
-      <% else %>
-      <%= image_tag("d_empty.png", class: "rating-diamond m-1 diamond-grayscale") %>
-      <% end %>
-      <% (4-@rating.floor).times do %>
-      <%= image_tag("d_empty.png",  class: "rating-diamond m-1 diamond-grayscale") %>
-      <% end %>
-      <h3>  <%= @rating.round(1) %></h3>
-    </div>
-  </div>
-
-  <div class="d-flex col-11 crypto-details mt-3 mb-5 align-items-center">
-    <%= image_tag "rank.png" %>
-    <h3>#<%= @crypto.rank %></h3>
-    <%= image_tag "dollar.png" %>
-    <h3 class="me-2"><%= @crypto.price.round(0) %></h3>
-    <%= image_tag "votes.png" %>
-    <h3><%= @crypto.crypto_ratings.count %></h3>
-    <%= image_tag "comments.png" %>
-    <h3> <%= @crypto.crypto_comments.count %> <%= time_ago_in_words(@crypto.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %></h3>
-    <%= image_tag "mcap.png" %>
-    <h3><%= @crypto.mcap_short %></h3>
-  </div>
-
-
-  <% @crypto.crypto_comments.order("created_at ASC").each do |c| %>
-    <div class="row justify-content-md-center mb-4">
-      <div class="d-flex comment col-12 p-3 rounded-4">
-        <%= cl_image_tag c.user.photo.key, class: "comment-avatar me-3" %>
-        <h4 class="me-5"><%= c.user.username %></h4>
-        <div class="me-auto">
-          <h5><%= time_ago_in_words(c.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
-          <p class="m-0"><%= c.content_trix %></p>
-        </div>
-        <%= image_tag "comment.png", width: "41", height: "42", class: "p-1 shadow rounded-4 align-self-end"%>
-        </p>
+    <div>
+      <div class="d-flex align-items-center crypto-show">
+        <h1 class="me-3"><%=  @crypto.name%></h1>
+        <h2 class="me-3"><%= @crypto.ticker.upcase %></h2>
+        <% @rating.floor.times do %>
+        <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
+        <% end %>
+        <% if @rating.modulo(1) >= 0.25 && @rating.modulo(1) < 0.75 %>
+        <%= image_tag("d_50.png", class: "rating-diamond m-1") %>
+        <% elsif @rating.modulo(1) >= 0.75 %>
+        <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
+        <% else %>
+        <%= image_tag("d_empty.png", class: "rating-diamond m-1 diamond-grayscale") %>
+        <% end %>
+        <% (4-@rating.floor).times do %>
+        <%= image_tag("d_empty.png",  class: "rating-diamond m-1 diamond-grayscale") %>
+        <% end %>
+        <h3>  <%= @rating.round(1) %></h3>
+      </div>
+      <div class="d-flex col-11 crypto-details mt-3 mb-5 align-items-center">
+        <%= image_tag "rank.png" %>
+        <h3>#<%= @crypto.rank %></h3>
+        <%= image_tag "dollar.png" %>
+        <h3 class="me-2"><%= @crypto.price.round(0) %></h3>
+        <%= image_tag "votes.png" %>
+        <h3><%= @crypto.crypto_ratings.count %></h3>
+        <%= image_tag "comments.png" %>
+        <h3> <%= @crypto.crypto_comments.count %> <%= time_ago_in_words(@crypto.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %></h3>
+        <%= image_tag "mcap.png" %>
+        <h3><%= @crypto.mcap_short %></h3>
       </div>
     </div>
-  <% end %>
+  </div>
 
 
-  <%= simple_form_for [@crypto, @comment], html: { class: "p-3 rounded-4 bg-white"} do |c| %>
-    <%= c.input :content_trix, as: :rich_text_area, placeholder: 'your comment....', label: 'Comment' %>
-    <%= c.submit 'Create' %>
-  <% end %>
+  <%= render 'comments', element: @crypto, comment: @comment %>
+
 </div>
