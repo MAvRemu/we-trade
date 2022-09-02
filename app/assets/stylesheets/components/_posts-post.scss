@@ -1,14 +1,37 @@
-.posts-post {
+.post {
+  background-color: white;
+  border-radius: 15px;
+
+  h4 {
+    margin: 20px 0 0 0;
+    font-size: 18px;
+    color: gray;
+  }
+
+  h5 {
+    color: darkgray;
+    margin: 0;
+    font-size: 15px;
+  }
+}
+
+.post-details {
   h6 {
     margin: 0;
-    font-size: 20px;
+    font-size: 15px;
   }
 
   img {
-    height: 20px;
+    height: 15px;
     filter: opacity(40%);
     margin: 0 10px 0 25px;
   }
+
+  h2 {
+    font-size: 18px !important;
+  }
+
+
 
 }
 
@@ -23,9 +46,16 @@
     filter: opacity(40%);
     margin: 0;
   }
+
+  h5 {
+    margin: 0 10px 0 0;
+    font-size: 17px;
+  }
+
+
 }
 .bcg-lightgrey {
-  background-color:rgb(161, 161, 161);
+  background-color:rgb(200, 200, 200);
 }
 
 .font-color-green {
@@ -35,4 +65,10 @@
 .font-color-red {
   color: red;
 
+}
+
+.post-title {
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
 }
