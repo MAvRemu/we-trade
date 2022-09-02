@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
   resources :squads do
     resources :squad_messages, only: [:create, :destroy]
-    resources :memberships, only: [:create, :destroy]
+    resources :memberships, only: [:create]
   end
+  resources :memberships, only:[:destroy]
 end

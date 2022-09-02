@@ -7,6 +7,10 @@ class MembershipsController < ApplicationController
     redirect_to squads_path
   end
   def destroy
+    @membership = Membership.find(params[:id])
+    authorize @membership
+    @membership.destroy
+    redirect_to squads_path, status: :see_other
   end
 
   private

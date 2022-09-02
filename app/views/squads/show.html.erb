@@ -21,3 +21,9 @@
           <%= f.submit "Send", class: "btn btn-primary mb-3" %>
       <% end %>
 </div>
+
+<% if @membership  %>
+  <%= link_to "Leave Squad", membership_path(@membership),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+<% end  %>
