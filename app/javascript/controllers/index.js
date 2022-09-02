@@ -3,15 +3,12 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+
 import ChatroomSubscriptionController from "./chatroom_subscription_controller"
 application.register("chatroom-subscription", ChatroomSubscriptionController)
 
+import DisableButtonController from "./disable_button_controller"
+application.register("disable-button", DisableButtonController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
-
-import { Application } from "@hotwired/stimulus"
-import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
-
-window.Stimulus = Application.start()
-const context = require.context("./", true, /\.js$/)
-Stimulus.load(definitionsFromContext(context))
