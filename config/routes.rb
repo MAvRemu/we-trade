@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
+    resources :post_votes, only: [:create, :destroy]
   end
   resources :cryptos do
     resources :crypto_comments, only: [:create, :destroy]

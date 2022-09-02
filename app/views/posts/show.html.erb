@@ -11,6 +11,18 @@
       <div class="d-flex">
         <div style="width:82px;"></div>
         <p class="mb-1"><%=  @post.content_trix%></p>
+        <div class="d-flex post-voter align-self-end ms-auto">
+          <%= simple_form_for([@post, @post_vote]) do |f| %>
+            <%= f.input :upvote, as: :hidden, input_html: {value: -1}%>
+            <%= f.submit "downvote"%>
+          <% end %>
+          <% upvotes = @post.post_votes.sum {|vote| vote.upvote }   %>
+          <h1 class="<%= upvotes > 0 ? "font-color-green" : "font-color-red" %>"><%= upvotes > 0 ? "+" : "" %><%= upvotes %></h1>
+          <%= simple_form_for([@post, @post_vote]) do |f| %>
+            <%= f.input :upvote, as: :hidden, input_html: {value: 1}%>
+            <%= f.submit "upvote"%>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
