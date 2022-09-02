@@ -4,6 +4,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     authorize @post
     @comment = PostComment.new
+    @post_vote = PostVote.new
+
   end
 
   def index
