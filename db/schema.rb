@@ -129,10 +129,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_02_083429) do
     t.string "content"
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
-    t.bigint "post_comment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_comment_id"], name: "index_post_comments_on_post_comment_id"
     t.index ["post_id"], name: "index_post_comments_on_post_id"
     t.index ["user_id"], name: "index_post_comments_on_user_id"
   end
@@ -208,7 +206,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_02_083429) do
   add_foreign_key "memberships", "users"
   add_foreign_key "post_bookmarks", "posts"
   add_foreign_key "post_bookmarks", "users"
-  add_foreign_key "post_comments", "post_comments"
   add_foreign_key "post_comments", "posts"
   add_foreign_key "post_comments", "users"
   add_foreign_key "post_votes", "posts"

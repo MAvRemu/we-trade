@@ -5,11 +5,10 @@ class SquadsController < ApplicationController
   end
 
   def show
-    @squad = Squad.find_by_id(params[:id])
+    @squad = Squad.find(params[:id])
     @squad_message = SquadMessage.new()
     @membership = Membership.where(user:current_user, squad: @squad)[0]
     authorize @squad
-    authorize @membership if @membership
   end
 
   def new
