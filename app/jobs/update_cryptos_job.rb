@@ -1,13 +1,23 @@
 class UpdateCryptosJob < ApplicationJob
   queue_as :default
 
+  def read_url(url)
+    coins_serialized = URI.open(url).read
+    return JSON.parse(coins_serialized)
+  end
+
   def perform
     require "open-uri"
     require "json"
 
-    url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100"
-    fresh_cryptos_serialized = URI.open(url).read
-    fresh_cryptos = JSON.parse(fresh_cryptos_serialized)
+    url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250"
+    i = 1
+    fresh_cryptos = []
+
+    2.times do
+      fresh_cryptos += read_url("#{url}&page=#{i}")
+      i += 1
+    end
 
     # add cryptos that are not yet represented in the database
     unadded_cryptos = fresh_cryptos.reject { |fresh_crypto| Crypto.find_by(id_name: fresh_crypto["id"]) }
