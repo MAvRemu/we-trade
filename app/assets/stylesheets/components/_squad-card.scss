@@ -69,3 +69,12 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
 }
+.leave-button{
+  align-self: center;
+  color: red;
+  transition: color ease;
+
+}
+.leave-button:hover{
+  color:red;
+}
