@@ -70,7 +70,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :photo, :content_trix)
+    params.require(:post).permit(:content, :title, :photo, :content_trix)
   end
 
 end
