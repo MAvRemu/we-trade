@@ -16,8 +16,8 @@ class SquadsController < ApplicationController
   def create
     chatroom = Chatroom.create()
     @squad = Squad.new(user: current_user, title: params[:title], description: params[:description], chatroom: chatroom)
-    authroize @squad
-    save @squad
+    authorize @squad
+    @squad.save
     chatroom.squad = @squad
     chatroom.save
     Membership.create(user:current_user, squad: @squad)

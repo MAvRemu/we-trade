@@ -66,7 +66,10 @@
                   </div>
                   <div class="squad-description mx-2"><%= s.description %></div>
               <% end %>
-              <button class="joinbutton"> Join</button>
+
+              <%= simple_form_for Membership.new(), url: squad_memberships_path(s) do |f| %>
+                <%= f.button :submit, class:"joinbutton" %>
+              <% end %>
             <% end %>
           </div>
         <% end %>
