@@ -4,16 +4,16 @@ class CryptosController < ApplicationController
     if params[:filter] == "rank"
       @cryptos = Crypto.all.order(:rank).page params[:page]
     elsif params[:filter] == "comments"
-      @cryptos_unpaginated = Crypto.all.includes(:crypto_comments).sort{ |a, b| b.crypto_comments.count <=> a.crypto_comments.count }
+      @cryptos_unpaginated = Crypto.all.includes(:crypto_comments).sort{ |a, b| b.crypto_comments.size <=> a.crypto_comments.size }
       @cryptos = Kaminari.paginate_array(@cryptos_unpaginated).page(params[:page])
     elsif params[:filter] == "ratings"
       @cryptos_unpaginated = Crypto.all.includes(:crypto_ratings).sort do |a, b|
-        b.crypto_ratings.sum(:rating).to_f/b.crypto_ratings.size <=> a.crypto_ratings.sum(:rating).to_f/a.crypto_ratings.size
+        b.crypto_ratings.sum(:rating).to_f / b.crypto_ratings.size <=> a.crypto_ratings.sum(:rating).to_f / a.crypto_ratings.size
       end
       @cryptos = Kaminari.paginate_array(@cryptos_unpaginated).page(params[:page])
     elsif params[:filter] == "votes"
       @cryptos_unpaginated = Crypto.page(params[:page]).all.includes(:crypto_ratings).sort do |a, b|
-        b.crypto_ratings.count <=> a.crypto_ratings.count
+        b.crypto_ratings.size <=> a.crypto_ratings.size
       end
       @cryptos = Kaminari.paginate_array(@cryptos_unpaginated).page(params[:page])
     elsif params[:filter] == "hot"
@@ -24,7 +24,6 @@ class CryptosController < ApplicationController
     else
       @cryptos = Crypto.all.order(:name).page params[:page]
     end
-    # @cryptos.page params[:page]
   end
 
   def show
