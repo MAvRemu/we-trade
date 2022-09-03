@@ -24,7 +24,6 @@ class CryptosController < ApplicationController
     else
       @cryptos = Crypto.all.order(:name).page params[:page]
     end
-
     # @cryptos.page params[:page]
   end
 
