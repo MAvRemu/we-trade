@@ -10,11 +10,11 @@ class UpdateCryptosJob < ApplicationJob
     require "open-uri"
     require "json"
 
-    url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=179"
+    url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250"
     i = 1
     fresh_cryptos = []
 
-    1.times do
+    3.times do
       fresh_cryptos += read_url("#{url}&page=#{i}")
       i += 1
     end

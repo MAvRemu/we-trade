@@ -1,4 +1,4 @@
-<h1>Cryptos (<%= @cryptos.count %>)</h1>
+<h1>Cryptos (<%= Crypto.all.count %>)</h1>
 
 <div class="d-flex cryptos-filters">
 <%= link_to "Hot",  cryptos_path(filter: "hot"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "hot"}"%>
@@ -26,3 +26,6 @@
 </div>
 <br>
 <% end %>
+
+
+<%= paginate @cryptos %>
