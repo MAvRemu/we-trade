@@ -1,31 +1,70 @@
-<h1>Cryptos (<%= Crypto.all.count %>)</h1>
-
-<div class="d-flex cryptos-filters">
-<%= link_to "Hot",  cryptos_path(filter: "hot"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "hot"}"%>
-<%= link_to "Rating",  cryptos_path(filter: "ratings"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "ratings"}"%>
-<%= link_to "Votes",  cryptos_path(filter: "votes"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "votes"}"%>
-<%= link_to "Comments",  cryptos_path(filter: "comments"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "comments"}"%>
-<%= link_to "Rank",  cryptos_path(filter: "rank"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "rank"}"%>
+<div class="px-5 my-5" style="text-align:center">
+  <h1>Cryptos (<%= Crypto.all.count %>)</h1>
+  <div class="d-flex cryptos-filters justify-content-center align-items-center">
+    <%= link_to "Hot",  cryptos_path(filter: "hot"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "hot"}"%>
+    <%= link_to "Rating",  cryptos_path(filter: "ratings"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "ratings"}"%>
+    <%= link_to "Votes",  cryptos_path(filter: "votes"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "votes"}"%>
+    <%= link_to "Comments",  cryptos_path(filter: "comments"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "comments"}"%>
+    <%= link_to "Rank",  cryptos_path(filter: "rank"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "rank"}"%>
+  </div>
 </div>
-<br>
+<% alternate = true %>
 <% @cryptos.each do |c| %>
-<div class="d-flex">
-  <%= image_tag c.image_url, class: "crypto-logo" %>
-  <div>
-    <h5 class="me-2">name: <%= link_to c.name, crypto_path(c) %></h5>
-    <h5 class="me-2">ticker: <%= c.ticker %></h5>
-    <h5 class="me-2">price: <%= c.price %></h5>
+<div class="d-flex justify-content-around <%= alternate ? "color-a" : "color-b" %> px-5">
+  <% alternate ? alternate = false : alternate = true %>
+  <div class="logo-container d-flex">
+    <%= image_tag c.image_url, class: "crypto-logo" %>
   </div>
-  <div>
-    <h5>rank: <%= c.rank %></h5>
-    <h5>comment count: <%= c.crypto_comments.count %></h5>
-    <h5>rate average:<%= c.crypto_ratings.sum(:rating).to_f/c.crypto_ratings.size %></h5>
-    <h5>rate votes:<%= c.crypto_ratings.count %></h5>
-    <h5>latest comment: <%= (time_ago_in_words(c.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true)) if !c.crypto_comments.empty? %></h5>
+
+  <div class="d-flex flex-column justify-content-around c-head">
+    <h5 class="me-2 my-2"><%= c.name %> </h5>
+    <h5 class="me-2 my-2" style="font-weight: 200;"><%= "(#{c.ticker})" %></h5>
+    <h5 class="me-2 my-2" style="font-weight: medium;"><%= c.price %></h5>
   </div>
-</div>
+  <div class="c-attributes mx-3">
+      <% rating = (c.crypto_ratings.sum(:rating).to_f/c.crypto_ratings.size).round(2)  %>
+      <div>
+        <!--<h5 style="font-weight: 200;"><%= rating %></h5> -->
+        <div>
+          <% rating.floor.times do %>
+              <%= image_tag("d_full.png", class: "rating-diamond-little m-1") %>
+            <% end %>
+            <% if rating.modulo(1) >= 0.25 && rating.modulo(1) < 0.75 %>
+              <%= image_tag("d_50.png", class: "rating-diamond-little m-1") %>
+            <% elsif rating.modulo(1) >= 0.75 %>
+              <%= image_tag("d_full.png", class: "rating-diamond-little m-1") %>
+            <% else %>
+            <%= (image_tag("d_empty.png", class: "rating-diamond-little m-1 diamond-grayscale")) unless rating.floor == 5 %>
+            <% end %>
+            <% (4-rating.floor).times do %>
+              <%= image_tag("d_empty.png",  class: "rating-diamond-little m-1 diamond-grayscale") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <div class="d-flex">
+    <div class="c-attributes mx-3">
+      <h6>rank</h6><h5 style="font-weight: 200;"><%= c.rank %></h5>
+    </div>
+    <div class="c-attributes mx-3">
+      <h6>comments</h6><h5 style="font-weight: 200;"><%= c.crypto_comments.count %></h5>
+    </div>
+
+    <div class="c-attributes mx-3">
+      <h6>votes</h6><h5 style="font-weight: 200;"><%= c.crypto_ratings.count %></h5>
+    </div>
+    <div class="c-attributes mx-3">
+      <h6>latest comment</h6><h5 style="font-weight: 200;"><%= (time_ago_in_words(c.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true)) if !c.crypto_comments.empty? %></h5>
+    </div>
+    <div class="c-attributes mx-3">
+      <%= link_to crypto_path(c) do %>
+        <%= image_tag("arrow-right.svg" )%>
+      <% end  %>
+
+
+    </div>
+  </div>
+
 <br>
+</div>
 <% end %>
-
-
-<%= paginate @cryptos %>
