@@ -1,5 +1,13 @@
 <div class="px-5 my-5" style="text-align:center">
   <h1>Cryptos (<%= Crypto.all.count %>)</h1>
+  <%= form_with url: cryptos_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a crypto by ticker or name"
+      %>
+      <%= submit_tag "Search", class: "btn btn-secondary" %>
+    <% end %>
   <div class="d-flex cryptos-filters justify-content-center align-items-center">
     <%= link_to "Hot",  cryptos_path(filter: "hot"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "hot"}"%>
     <%= link_to "Rating",  cryptos_path(filter: "ratings"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "ratings"}"%>
