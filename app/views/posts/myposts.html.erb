@@ -1,0 +1,47 @@
+<h1>My Favorite Posts (<%= @myposts.count %>)</h1>
+
+<div class="row justify-content-md-center p-0">
+  <div class="d-flex col-7 posts-filters align-items-center mb-2 mt-4" >
+    <h5 >Filters: </h5>
+    <div class="p-2 rounded-3 <%= params[:filter] == "new" ? "bcg-lightgrey" : "" %>">
+      <%= image_tag "new.png" %>
+      <%= link_to "New",  myposts_path(filter: "new")%>
+    </div>
+    <div class="p-2 rounded-3 <%= params[:filter] == "hot" ? "bcg-lightgrey" : "" %>">
+      <%= image_tag "hot.png" %>
+      <%= link_to "Hot",  myposts_path(filter: "hot")%>
+    </div>
+    <div class="p-2 rounded-3 <%= params[:filter] == "votes" ? "bcg-lightgrey" : "" %>">
+      <%= image_tag "votes.png" %>
+      <%= link_to "Upvotes",  myposts_path(filter: "votes")%>
+    </div>
+    <div class="p-2 rounded-3 me-auto <%= params[:filter] == "comments" ? "bcg-lightgrey" : "" %>">
+      <%= image_tag "comments.png" %>
+      <%= link_to "Comments",  myposts_path(filter: "comments")%>
+    </div>
+  </div>
+</div>
+
+<% @myposts.each do | p | %>
+<div class="row justify-content-md-center mb-4">
+  <div class="d-flex post col-7 p-3">
+    <%= cl_image_tag p.user.photo.key, class: "comment-avatar me-3" %>
+    <div style="width:100%">
+      <div class="d-flex align-items-center post-details">
+        <h4 class="m-0 me-3"><%= p.user.username %></h4>
+        <h5 class="me-auto"><%= time_ago_in_words(p.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
+        <%= image_tag "votes.png" %>
+        <% upvotes = p.post_votes.sum {|vote| vote.upvote }   %>
+        <h6 class="<%= upvotes > 0 ? "font-color-green" : "font-color-red" %>"> <%= upvotes > 0 ? "+" : "" %><%= upvotes %></h6>
+        <%= image_tag "comments.png" %>
+        <h6><%=  p.post_comments.count  %></h6>
+        <%= image_tag "group.png" %>
+        <h6><%= p.post_comments.map {|c| c.user}.uniq.count  %></h6>
+      </div>
+      <div class="mt-2">
+      <%= link_to p.title, post_path(p), class: "post-title" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

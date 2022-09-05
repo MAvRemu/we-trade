@@ -10,6 +10,10 @@ class PostPolicy < ApplicationPolicy
     true
   end
 
+  def myposts?
+    true
+  end
+
   def edit?
     record.user == user || user.admin?
   end

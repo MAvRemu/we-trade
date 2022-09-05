@@ -10,6 +10,10 @@ class CryptoPolicy < ApplicationPolicy
     true
   end
 
+  def mycryptos?
+    true
+  end
+
   def destroy?
     @user.admin?
   end

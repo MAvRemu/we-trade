@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="d-flex mt-5">
     <%= image_tag @crypto.image_url, class: "crypto-logo-show me-3" %>
@@ -31,6 +32,11 @@
         <h3> <%= @crypto.crypto_comments.count %> <%= time_ago_in_words(@crypto.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %></h3>
         <%= image_tag "mcap.png" %>
         <h3><%= @crypto.mcap_short %></h3>
+      <% if @crypto_bookmark_present %>
+        <%= button_to "delete favorite", crypto_bookmark_path(@crypto_bookmark), method: :delete%>
+      <% else %>
+        <%= button_to "favorite", crypto_crypto_bookmarks_path(@crypto)%>
+      <% end %>
       </div>
     </div>
   </div>

@@ -12,11 +12,13 @@ class User < ApplicationRecord
 
   has_many :post_bookmarks, dependent: :destroy
   has_many :crypto_bookmarks, dependent: :destroy
+  has_many :cryptos, through: :crypto_bookmarks
   has_many :crypto_comments, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :crypto_ratings, dependent: :destroy
   has_many :post_votes, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :bookmark_posts, source: :post, through: :post_bookmarks
   has_many :memberships, dependent: :destroy
 
   has_many :squads, through: :memberships

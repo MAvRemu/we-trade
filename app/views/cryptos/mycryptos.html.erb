@@ -1,0 +1,32 @@
+<h1>My Favorite Cryptos (<%= @mycryptos.count %>)</h1>
+
+<div class="d-flex cryptos-filters">
+<%= link_to "Hot",  mycryptos_path(filter: "hot"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "hot"}"%>
+<%= link_to "Rating",  mycryptos_path(filter: "ratings"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "ratings"}"%>
+<%= link_to "Votes",  mycryptos_path(filter: "votes"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "votes"}"%>
+<%= link_to "Comments",  mycryptos_path(filter: "comments"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "comments"}"%>
+<%= link_to "Rank",  mycryptos_path(filter: "rank"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "rank"}"%>
+</div>
+
+<br>
+<% @mycryptos.each do |c| %>
+<div class="d-flex">
+  <%= image_tag c.image_url, class: "crypto-logo" %>
+  <div>
+    <h5 class="me-2">name: <%= link_to c.name, crypto_path(c) %></h5>
+    <h5 class="me-2">ticker: <%= c.ticker %></h5>
+    <h5 class="me-2">price: <%= c.price %></h5>
+  </div>
+  <div>
+    <h5>rank: <%= c.rank %></h5>
+    <h5>comment count: <%= c.crypto_comments.count %></h5>
+    <h5>rate average:<%= c.crypto_ratings.sum(:rating).to_f/c.crypto_ratings.size %></h5>
+    <h5>rate votes:<%= c.crypto_ratings.count %></h5>
+    <h5>latest comment: <%= (time_ago_in_words(c.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true)) if !c.crypto_comments.empty? %></h5>
+  </div>
+</div>
+<br>
+<% end %>
+
+
+<%= paginate @mycryptos %>
