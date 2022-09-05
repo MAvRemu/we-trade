@@ -81,3 +81,34 @@
 .center-h1 {
   text-align: center;
 }
+.home_entry{
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+}
+
+.home_entry > img{
+  z-index: -1;
+  position: absolute;
+  opacity: 0.4;
+
+}
+.hello-message{
+  position: relative;
+  z-index: 1;
+}
+#day-begin{
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  opacity: 2;
+  color: rgb(73, 56, 67);
+  font-weight: 900;
+  z-index: 2;
+}
+
+#home-img{
+  z-index: -1;
+  opacity: 0.4;
+}

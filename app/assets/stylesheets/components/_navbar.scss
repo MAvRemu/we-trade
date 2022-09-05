@@ -11,7 +11,19 @@
   width: 60px;
 }
 
-.nav-link {
-  color: white;
+.nav-lnk {
+  text-decoration: none;
+  font-weight: normal;
+  margin-right: 8px;
+  color: #b9d0cc;
   font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+#lnk{
+  color: #b9d0cc !important ;
+  transition: color 0.3s ease;
+}
+#lnk:hover{
+  color: white !important ;
 }
