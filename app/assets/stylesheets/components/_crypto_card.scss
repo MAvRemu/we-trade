@@ -1,6 +1,14 @@
 .crypto-logo {
   width: 50px;
-  height: 100%;
+  height: 50px;
+  align-items: center;
+  margin-right: 50px;
+}
+.color-a{
+  background-color: #c0cec5;
+}
+.color-b{
+  background-color: #dedede;
 }
 
 .cryptos-filters {
@@ -12,4 +20,24 @@
     padding: 0.5%;
     border-radius: 7px;
   }
+}
+.bg-eg{
+  background-color: $eggplant;
+}
+.logo-container{
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100px;
+}
+.c-attributes{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 150px;
+  text-align: center;
+}
+.c-head{
+  width: 160px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
