@@ -135,6 +135,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_140406) do
     t.index ["user_id"], name: "index_post_comments_on_user_id"
   end
 
+  create_table "post_nested_comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.bigint "post_comment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_comment_id"], name: "index_post_nested_comments_on_post_comment_id"
+    t.index ["user_id"], name: "index_post_nested_comments_on_user_id"
+  end
+
   create_table "post_votes", force: :cascade do |t|
     t.integer "upvote"
     t.bigint "user_id", null: false
@@ -225,6 +235,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_140406) do
   add_foreign_key "post_bookmarks", "users"
   add_foreign_key "post_comments", "posts"
   add_foreign_key "post_comments", "users"
+  add_foreign_key "post_nested_comments", "post_comments"
+  add_foreign_key "post_nested_comments", "users"
   add_foreign_key "post_votes", "posts"
   add_foreign_key "post_votes", "users"
   add_foreign_key "posts", "squads"

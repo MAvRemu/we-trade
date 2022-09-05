@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :cryptos, through: :crypto_bookmarks
   has_many :crypto_comments, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :post_nested_comments, dependent: :destroy
   has_many :crypto_ratings, dependent: :destroy
   has_many :post_votes, dependent: :destroy
   has_many :posts, dependent: :destroy

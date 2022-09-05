@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     authorize @post
     @comment = PostComment.new
     @post_vote = PostVote.new
+    @comment_nested = PostNestedComment.new
 
     @post_bookmark_present = PostBookmark.exists?(user: current_user, post: @post)
     if @post_bookmark_present
