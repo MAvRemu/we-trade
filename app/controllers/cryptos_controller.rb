@@ -10,7 +10,11 @@ class CryptosController < ApplicationController
     else
       @count = @cryptos.size
       @cryptos = filter_cryptos(Crypto.all)
+    end
 
+    respond_to do |format|
+      format.html
+      format.text { render partial: "cryptos/list", locals: {cryptos: @cryptos}, formats: [:html] }
     end
   end
 

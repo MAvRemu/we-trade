@@ -2,7 +2,6 @@
 
 <div class="showsquad">
   <div class="container watchlist">
-
     <div class="row">
       <% ((@squad.watchlist).cryptos).each  do |crypto|%>
         <div class="col-sm-2">
@@ -13,15 +12,20 @@
         </div>
       <% end  %>
     </div>
-    <%= form_with url: squad_watchings_path(@squad), method: :get, class: "d-flex" do %>
+    <div data-controller="crypto">
+      <%= form_with url: squad_watchings_path(@squad), method: :get, data: {crypto_target:"form"}, class: "d-flex" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          data: {crypto_target: "input", action: "keyup->crypto#update"},
+          class: "form-control",
+          placeholder: "add a crypto to your squad watchlist"
+        %>
+      <% end %>
 
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "add a crypto to your squad watchlist"
-      %>
-      <%= submit_tag "Search", class: "coin-search" %>
-    <% end %>
+      <button data-crypto-target="suggestions" data-action="click->crypto#cmon"></button>
+      <div data-crypto-target="list"></div>
+      </div>
+    </div>
   </div>
   <div class="container chatroom" data-controller="chatroom-subscription"
     data-chatroom-subscription-chatroom-id-value="<%= @squad.chatroom.id %>"

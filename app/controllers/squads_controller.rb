@@ -1,7 +1,6 @@
 class SquadsController < ApplicationController
   def index
     @squads = policy_scope(Squad)
-
   end
 
   def show
@@ -36,9 +35,11 @@ class SquadsController < ApplicationController
 
   def addToWatchlist
     if (params[:query])
-      redirect_to squads_path(Squad.find(params[:squad_id]))
+      @squad = Squad.find(params[:squad_id])
+      authorize @squad
+      redirect_to squads_path(@squad)
     end
-    raise
+
   end
 
   private

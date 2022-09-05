@@ -1,10 +1,12 @@
 class SquadPolicy < ApplicationPolicy
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       scope.all
     end
   end
+
 
   def show?
     true
@@ -30,7 +32,7 @@ class SquadPolicy < ApplicationPolicy
     true
   end
 
-  def addToWatchlist
+  def addToWatchlist?
     true
   end
 end
