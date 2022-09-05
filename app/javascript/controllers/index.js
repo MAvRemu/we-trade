@@ -12,3 +12,6 @@ application.register("disable-button", DisableButtonController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import NestedCommentsController from "./nested_comments_controller"
+application.register("nested-comments", NestedCommentsController)
