@@ -12,6 +12,7 @@ gem "cloudinary"
 gem "sidekiq"
 gem "sidekiq-failures", "~> 1.0"
 gem 'kaminari'
+gem 'pg_search'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

@@ -68,7 +68,7 @@
               <% end %>
 
               <%= simple_form_for Membership.new(), url: squad_memberships_path(s) do |f| %>
-                <%= f.button :submit, class:"joinbutton" %>
+                <%= f.button :submit, class:"joinbutton", value: "join" %>
               <% end %>
             <% end %>
           </div>
