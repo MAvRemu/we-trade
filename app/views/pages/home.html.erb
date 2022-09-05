@@ -19,7 +19,6 @@
 
 <% else %>
   <div class="home_entry">
-
     <div classs="hello-message"><h1 id="day-begin"> Happy <%="#{Date.today.strftime("%A")}, #{current_user.username}!"%> </h1>
       <div id="home-img">
         <%= image_tag('Crypto10.svg') %>
@@ -32,4 +31,4 @@
     </div>
   </div>
   <ul id="results" class="list-group list-group-horizontal"></ul>
-<%end  %>
+<%end%>
