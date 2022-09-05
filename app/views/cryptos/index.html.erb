@@ -1,19 +1,24 @@
 <div class="px-5 my-5" style="text-align:center">
-  <h1>Cryptos (<%= Crypto.all.count %>)</h1>
+  <h1>Cryptos (<%= @count %>)</h1>
+
   <%= form_with url: cryptos_path, method: :get, class: "d-flex" do %>
+
       <%= text_field_tag :query,
         params[:query],
         class: "form-control",
         placeholder: "Find a crypto by ticker or name"
       %>
-      <%= submit_tag "Search", class: "btn btn-secondary" %>
+      <%= submit_tag "Search", class: "coin-search" %>
     <% end %>
+    <div class="reset-container my-2">
+      <%= link_to "Reset",  cryptos_path, class:"reset-crypto-form px-3", id:'noblue' %>
+    </div>
   <div class="d-flex cryptos-filters justify-content-center align-items-center">
-    <%= link_to "Hot",  cryptos_path(filter: "hot"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "hot"}"%>
-    <%= link_to "Rating",  cryptos_path(filter: "ratings"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "ratings"}"%>
-    <%= link_to "Votes",  cryptos_path(filter: "votes"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "votes"}"%>
-    <%= link_to "Comments",  cryptos_path(filter: "comments"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "comments"}"%>
-    <%= link_to "Rank",  cryptos_path(filter: "rank"), style: "#{ 'background-color:lightgrey;' if params[:filter] == "rank"}"%>
+    <%= link_to "Hot",  cryptos_path(filter: "hot", query: params[:query]), style: "#{ 'background-color:lightgrey;' if params[:filter] == "hot"}"%>
+    <%= link_to "Rating",  cryptos_path(filter: "ratings", query: params[:query]), style: "#{ 'background-color:lightgrey;' if params[:filter] == "ratings"}"%>
+    <%= link_to "Votes",  cryptos_path(filter: "votes", query: params[:query]), style: "#{ 'background-color:lightgrey;' if params[:filter] == "votes"}"%>
+    <%= link_to "Comments",  cryptos_path(filter: "comments", query: params[:query]), style: "#{ 'background-color:lightgrey;' if params[:filter] == "comments"}"%>
+    <%= link_to "Rank",  cryptos_path(filter: "rank", query: params[:query]), style: "#{ 'background-color:lightgrey;' if params[:filter] == "rank"}"%>
   </div>
 </div>
 <% alternate = true %>
@@ -76,3 +81,4 @@
 <br>
 </div>
 <% end %>
+<div class="pagination"><%= paginate @cryptos %> </div>

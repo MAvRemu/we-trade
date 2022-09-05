@@ -29,4 +29,8 @@ class SquadPolicy < ApplicationPolicy
   def join?
     true
   end
+
+  def addToWatchlist
+    true
+  end
 end

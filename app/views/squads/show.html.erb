@@ -1,6 +1,28 @@
 
 
 <div class="showsquad">
+  <div class="container watchlist">
+
+    <div class="row">
+      <% ((@squad.watchlist).cryptos).each  do |crypto|%>
+        <div class="col-sm-2">
+          <div class="watchlist-item d-flex flex-column justify-content-center align-items-center">
+            <h6 class='my-2'><%=crypto.ticker  %></h6>
+            <%= image_tag(crypto.image_url, class: "watchlist-img") %>
+          </div>
+        </div>
+      <% end  %>
+    </div>
+    <%= form_with url: squad_watchings_path(@squad), method: :get, class: "d-flex" do %>
+
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "add a crypto to your squad watchlist"
+      %>
+      <%= submit_tag "Search", class: "coin-search" %>
+    <% end %>
+  </div>
   <div class="container chatroom" data-controller="chatroom-subscription"
     data-chatroom-subscription-chatroom-id-value="<%= @squad.chatroom.id %>"
   >
@@ -26,6 +48,7 @@
   <% if @membership  %>
     <%= link_to "Leave Squad", membership_path(@membership), class: 'leave-button my-3',
         data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-
   <% end  %>
+
+
 </div>

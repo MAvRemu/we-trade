@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_05_130143) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_05_140406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -185,6 +185,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_130143) do
     t.datetime "updated_at", null: false
     t.boolean "private", default: false
     t.boolean "open", default: true
+    t.integer "watchlist"
     t.index ["user_id"], name: "index_squads_on_user_id"
   end
 
@@ -200,6 +201,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_130143) do
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "watchings", force: :cascade do |t|
+    t.bigint "crypto_id", null: false
+    t.bigint "watchlist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crypto_id"], name: "index_watchings_on_crypto_id"
+    t.index ["watchlist_id"], name: "index_watchings_on_watchlist_id"
+  end
+
+  create_table "watchlists", force: :cascade do |t|
+    t.bigint "squad_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["squad_id"], name: "index_watchlists_on_squad_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -227,4 +244,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_130143) do
   add_foreign_key "squad_messages", "chatrooms"
   add_foreign_key "squad_messages", "users"
   add_foreign_key "squads", "users"
+  add_foreign_key "watchings", "cryptos"
+  add_foreign_key "watchings", "watchlists"
+  add_foreign_key "watchlists", "squads"
 end

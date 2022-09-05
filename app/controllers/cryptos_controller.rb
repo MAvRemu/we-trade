@@ -1,7 +1,17 @@
 class CryptosController < ApplicationController
   def index
     @cryptos = policy_scope(Crypto)
-    @cryptos = filter_cryptos(Crypto.all)
+    @count = 0
+    if (params[:query])
+      @cryptos = Crypto.search_by_name_and_ticker(params[:query])
+      @count = @cryptos.size
+      @cryptos = filter_cryptos(@cryptos)
+
+    else
+      @count = @cryptos.size
+      @cryptos = filter_cryptos(Crypto.all)
+
+    end
   end
 
   def show
@@ -38,6 +48,7 @@ class CryptosController < ApplicationController
   private
 
   def filter_cryptos(cryptos)
+
     if params[:filter] == "rank"
       @cryptos = cryptos.order(:rank).page params[:page]
     elsif params[:filter] == "comments"
