@@ -11,19 +11,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto align-items-center">
         <% if user_signed_in? %>
-          <li class="nav-item  active">
-            <%= link_to "Home", "/", class: "nav-link" %>
+          <li class="nav-itm  active">
+            <%= link_to "Home", "/", class: "nav-lnk" , id: "lnk" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Squads", squads_path, class: "nav-link" %>
+          <li class="nav-itm">
+            <%= link_to "Squads", squads_path, class: "nav-lnk", id: "lnk"%>
           </li>
-          <li class="nav-item">
-            <%= link_to "Cryptos", cryptos_path, class: "nav-link" %>
+          <li class="nav-itm">
+            <%= link_to "Cryptos", cryptos_path, class: "nav-lnk" , id: "lnk"%>
           </li>
-          <li class="nav-item">
-            <%= link_to "Posts", posts_path(filter: "new"), class: "nav-link" %>
+          <li class="nav-itm">
+            <%= link_to "Posts", posts_path(filter: "new"), class: "nav-lnk", id: "lnk"%>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-itm dropdown">
             <%= cl_image_tag current_user.photo.key, class: "avatar-large dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My ❤️ cryptos",  mycryptos_path, class: "dropdown-item" %>

@@ -1,6 +1,5 @@
 
 <div class="container">
-
   <div class="d-flex mt-5">
     <%= image_tag @crypto.image_url, class: "crypto-logo-show me-3" %>
     <div>
@@ -8,17 +7,17 @@
         <h1 class="me-3"><%=  @crypto.name%></h1>
         <h2 class="me-3"><%= @crypto.ticker.upcase %></h2>
         <% @rating.floor.times do %>
-        <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
+          <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
         <% end %>
         <% if @rating.modulo(1) >= 0.25 && @rating.modulo(1) < 0.75 %>
-        <%= image_tag("d_50.png", class: "rating-diamond m-1") %>
+          <%= image_tag("d_50.png", class: "rating-diamond m-1") %>
         <% elsif @rating.modulo(1) >= 0.75 %>
-        <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
+          <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
         <% else %>
-        <%= (image_tag("d_empty.png", class: "rating-diamond m-1 diamond-grayscale")) unless @rating.floor == 5 %>
+         <%= (image_tag("d_empty.png", class: "rating-diamond m-1 diamond-grayscale")) unless @rating.floor == 5 %>
         <% end %>
         <% (4-@rating.floor).times do %>
-        <%= image_tag("d_empty.png",  class: "rating-diamond m-1 diamond-grayscale") %>
+          <%= image_tag("d_empty.png",  class: "rating-diamond m-1 diamond-grayscale") %>
         <% end %>
         <h3>  <%= @rating.round(1) %></h3>
       </div>
