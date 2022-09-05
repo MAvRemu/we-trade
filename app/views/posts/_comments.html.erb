@@ -29,9 +29,9 @@
       <% end %>
       <div class="row justify-content-center">
         <div class="col-7 pb-3 p-0 rounded-4">
-          <%= simple_form_for [element, c, comment_nested], html: { class: "p-3 rounded-4 bg-white visually-hidden", 'data-nested-comments-target' =>  "form"} do |f| %>
-            <%= f.input :content_trix, as: :rich_text_area, placeholder: 'your comment....', label: 'Comment' %>
-            <%= f.submit 'Create' %>
+          <%= simple_form_for [element, c, comment_nested], html: { class: "p-3 rounded-4 bg-white", 'data-nested-comments-target' =>  "form"} do |f| %>
+            <%= f.rich_text_area :content_trix, id: c.id, placeholder: 'your comment....', label: 'Comment' %>
+            <%= f.submit 'Reply' %>
           <% end %>
         </div>
       </div>
@@ -42,9 +42,9 @@
 
 <div class="row justify-content-center">
   <div class="col-9 p-3 rounded-4">
-    <%= simple_form_for [element, comment], html: { class: "p-3 rounded-4 bg-white"} do |c| %>
-      <%= c.input :content_trix, as: :rich_text_area, placeholder: 'your comment....', label: 'Comment' %>
-      <%= c.submit 'Create' %>
+    <%= simple_form_for [element, comment], html: { class: "p-3 rounded-4 bg-white"}  do  |c| %>
+    <%= c.rich_text_area :content_trix, id: element.id, placeholder: 'your comment....', label: 'Comment' %>
+    <%= c.submit 'Create' %>
     <% end %>
   </div>
 </div>
