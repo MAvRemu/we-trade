@@ -7,16 +7,22 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  get 'mycryptos', to: 'pages#mycryptos'
-  get 'myposts', to: 'pages#myposts'
+  get 'mycryptos', to: 'cryptos#mycryptos'
+  get 'myposts', to: 'posts#myposts'
 
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
     resources :post_votes, only: [:create, :destroy]
+    resources :post_bookmarks, only: [:create, :update]
   end
+  resources :post_bookmarks, only: [:destroy]
+
   resources :cryptos do
     resources :crypto_comments, only: [:create, :destroy]
+    resources :crypto_bookmarks, only: [:create, :update]
   end
+  resources :crypto_bookmarks, only: [:destroy]
+
   resources :squads do
     resources :squad_messages, only: [:create, :destroy]
     resources :memberships, only: [:create]

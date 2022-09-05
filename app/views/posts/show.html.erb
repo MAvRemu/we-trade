@@ -1,5 +1,6 @@
 <div class="container">
 
+
   <div class="d-flex post-main  rounded-4 mt-5 mb-3">
     <div class="p-3">
       <div class="d-flex align-items-center mb-2">
@@ -21,6 +22,11 @@
           <%= simple_form_for([@post, @post_vote]) do |f| %>
             <%= f.input :upvote, as: :hidden, input_html: {value: 1}%>
             <%= f.submit "upvote"%>
+          <% end %>
+          <% if @post_bookmark_present %>
+            <%= button_to "delete favorite", post_bookmark_path(@post_bookmark), method: :delete%>
+          <% else %>
+            <%= button_to "favorite", post_post_bookmarks_path(@post)%>
           <% end %>
         </div>
       </div>
