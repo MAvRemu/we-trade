@@ -5,19 +5,19 @@
     <h5 >Filters: </h5>
     <div class="p-2 rounded-3 <%= params[:filter] == "new" ? "bcg-lightgrey" : "" %>">
       <%= image_tag "new.png" %>
-      <%= link_to "New",  posts_path(filter: "new")%>
+      <%= link_to "New",  myposts_path(filter: "new")%>
     </div>
     <div class="p-2 rounded-3 <%= params[:filter] == "hot" ? "bcg-lightgrey" : "" %>">
       <%= image_tag "hot.png" %>
-      <%= link_to "Hot",  posts_path(filter: "hot")%>
+      <%= link_to "Hot",  myposts_path(filter: "hot")%>
     </div>
     <div class="p-2 rounded-3 <%= params[:filter] == "votes" ? "bcg-lightgrey" : "" %>">
       <%= image_tag "votes.png" %>
-      <%= link_to "Upvotes",  posts_path(filter: "votes")%>
+      <%= link_to "Upvotes",  myposts_path(filter: "votes")%>
     </div>
     <div class="p-2 rounded-3 me-auto <%= params[:filter] == "comments" ? "bcg-lightgrey" : "" %>">
       <%= image_tag "comments.png" %>
-      <%= link_to "Comments",  posts_path(filter: "comments")%>
+      <%= link_to "Comments",  myposts_path(filter: "comments")%>
     </div>
   </div>
 </div>
