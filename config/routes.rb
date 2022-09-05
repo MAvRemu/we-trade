@@ -6,10 +6,9 @@ Rails.application.routes.draw do
   end
 
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get 'mycryptos', to: 'pages#mycryptos'
+  get 'myposts', to: 'pages#myposts'
 
   resources :posts do
     resources :post_comments, only: [:create, :destroy]

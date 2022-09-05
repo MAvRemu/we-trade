@@ -57,11 +57,26 @@ def generate_post_votes(posts, array)
   end
 end
 
+def generate_crypto_bookmarks(cryptos, array)
+  cryptos.last(50).each do |c|
+    CryptoBookmark.create!(user: array.sample, crypto: c)
+  end
+end
+
+def generate_post_bookmarks(posts, array)
+  posts.each do |p|
+    PostBookmark.create!(user: array.sample, post: p)
+  end
+end
+
+
 # main seeds
 CryptoComment.destroy_all
 PostComment.destroy_all
 CryptoRating.destroy_all
 PostVote.destroy_all
+CryptoBookmark.destroy_all
+PostBookmark.destroy_all
 Post.destroy_all
 Membership.destroy_all
 Squad.destroy_all
@@ -93,6 +108,9 @@ puts "created post comments"
 generate_post_votes(posts, users_array)
 puts "created post votes"
 
+generate_post_bookmarks(posts, users_array)
+puts "created post bookmarks"
+
 download_cryptos
 puts "created cryptos"
 
@@ -102,6 +120,9 @@ puts "created cryptos comments"
 
 generate_crypto_ratings(cryptos, marius)
 puts "created cryptos ratings"
+
+generate_crypto_bookmarks(cryptos, users_array)
+puts "created crypto bookmarks"
 
 puts "creating squads"
 c_t = Chatroom.create
