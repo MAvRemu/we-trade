@@ -23,4 +23,19 @@ class Crypto < ApplicationRecord
     end
     output
   end
+
+
+  def price_short
+    output = 0
+    if self.price > 1000
+      output = "#{(self.price/1000).round(1)}k"
+    elsif self.price > 10
+      output = "#{(self.price).round(2)}"
+    elsif self.price > 1
+      output = "#{(self.price).round(3)}"
+    else
+      output = "#{(self.price).round(4)}"
+    end
+    output
+  end
 end

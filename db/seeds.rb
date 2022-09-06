@@ -73,8 +73,8 @@ end
 
 
 # main seeds
-CryptoComment.destroy_all
 CryptoNestedComment.destroy_all
+CryptoComment.destroy_all
 PostNestedComment.destroy_all
 PostComment.destroy_all
 CryptoRating.destroy_all

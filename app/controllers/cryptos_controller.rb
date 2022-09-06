@@ -1,14 +1,10 @@
 class CryptosController < ApplicationController
   def index
     @cryptos = policy_scope(Crypto)
-    @count = 0
-    if (params[:query])
+    if (params[:query].present?)
       @cryptos = Crypto.search_by_name_and_ticker(params[:query])
-      @count = @cryptos.size
       @cryptos = filter_cryptos(@cryptos)
-
     else
-      @count = @cryptos.size
       @cryptos = filter_cryptos(Crypto.all)
     end
 
