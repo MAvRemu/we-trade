@@ -32,6 +32,7 @@ class SquadsController < ApplicationController
     Membership.create(user:current_user, squad: @squad)
     @squad.watchlist = watchlist
     @squad.save
+    redirect_to squad_path(@squad)
   end
 
   def destroy

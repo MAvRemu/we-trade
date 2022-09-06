@@ -18,7 +18,17 @@
   border: solid rgb(232, 223, 232) 2px;
   z-index: 5;
   justify-content: center;
+}
 
+.squad-category{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+}
+.createsquad{
+  padding: 24px;
+  text-decoration: none;
 }
 .squad-autocomplete{
   display: inline-block;

@@ -38,10 +38,10 @@
   </div>
 
   <div div class="my-3">
-    <div class="d-flex justify-content-between"><h2 class="eggplant-text">Open Squads</h2>
+    <div class="d-flex justify-content-between"><h2 class="eggplant-text squad-category">Open Squads</h2>
     <div>
-        <%= link_to new_squad_path do %>
-          <div class="joinbutton"> create squad </div>
+        <%= link_to new_squad_path, style:"text-decoration:none" do  %>
+          <div class="joinbutton createsquad"> create squad </div>
         <% end  %>
     </div>
     </div>
@@ -76,9 +76,10 @@
             <%= simple_form_for Membership.new(), url: squad_memberships_path(s) do |f| %>
               <%= f.button :submit, class:"joinbutton", value: "join" %>
             <% end %>
+            </div>
           <% end %>
           <% end %>
-      </div>
+
     </div>
   </div>
 </div>
