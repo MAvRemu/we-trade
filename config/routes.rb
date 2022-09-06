@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   get 'myposts', to: 'posts#myposts'
 
   resources :posts do
-    resources :post_comments, only: [:create, :destroy]
+    resources :post_comments, only: [:create, :destroy] do
+      resources :post_nested_comments, only: [:create]
+    end
+
     resources :post_votes, only: [:create, :destroy]
     resources :post_bookmarks, only: [:create, :update]
   end
