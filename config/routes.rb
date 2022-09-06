@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
     post '/watchings', to: 'squads#addToWatchlist'
   end
+  resources :watchings, only: [:destroy]
   resources :memberships, only:[:destroy]
 
 end
