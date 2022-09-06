@@ -4,15 +4,17 @@
   <div class="container watchlist">
     <div class="row">
       <% ((@squad.watchlist).cryptos).each  do |crypto|%>
-        <div class="col-sm-2">
-          <div class="watchlist-item d-flex flex-column justify-content-center align-items-center">
-            <h6 class='my-2'><%=crypto.ticker  %></h6>
-            <%= image_tag(crypto.image_url, size:"35", class: "watchlist-img") %>
+        <div class="col-sm-2 justify-items-center">
+          <div class="watchlist-item d-flex flex-column justify-content-center align-items-center shadow rounded">
+            <%= link_to crypto_path(crypto), class:"text-decoration-none logo-link" do %>
+              <h6 class="text-center"><%=crypto.ticker  %></h6>
+              <%= image_tag(crypto.image_url, size:"35", class: "watchlist-img") %>
+            <% end %>
           </div>
         </div>
       <% end  %>
     </div>
-    <div data-controller="crypto">
+    <div data-controller="crypto" class="my-4">
       <%= form_with url: squad_watchings_path(@squad), method: :get, data: {crypto_target:"form"}, class: "d-flex" do %>
         <%= text_field_tag :query,
           params[:query],
@@ -49,9 +51,10 @@
   </div>
 
   <% if @membership  %>
+  <div class="text-center my-3">
     <%= link_to "Leave Squad", membership_path(@membership), class: 'leave-button my-3',
         data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  </div>
   <% end  %>
-
 
 </div>

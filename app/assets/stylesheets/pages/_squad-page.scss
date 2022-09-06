@@ -21,9 +21,28 @@
 }
 .squad-autocomplete{
   display: inline-block;
-
   position: absolute;
   height: 200px;
   z-index: 5;
   overflow: hidden scroll;
+}
+
+.watchlist-item{
+  background-color: white;
+  height: 6em;
+  width: 6em;
+  padding: 8px 8px 8px 8px;
+  margin: 8px;
+}
+
+.logo-link{
+  color: black;
+  transition: color 0.3s ease;
+}
+.logo-link:hover{
+  color: rgb(180, 168, 45);
+}
+
+.watchlist{
+
 }
