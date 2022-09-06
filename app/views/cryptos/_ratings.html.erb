@@ -1,13 +1,13 @@
-<% @rating.floor.times do %>
+<% rating.floor.times do %>
   <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
 <% end %>
-<% if @rating.modulo(1) >= 0.25 && @rating.modulo(1) < 0.75 %>
+<% if rating.modulo(1) >= 0.25 && rating.modulo(1) < 0.75 %>
   <%= image_tag("d_50.png", class: "rating-diamond m-1") %>
-<% elsif @rating.modulo(1) >= 0.75 %>
+<% elsif rating.modulo(1) >= 0.75 %>
   <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
 <% else %>
-  <%= (image_tag("d_empty.png", class: "rating-diamond m-1 diamond-grayscale")) unless @rating.floor == 5 %>
+  <%= (image_tag("d_empty.png", class: "rating-diamond m-1 diamond-grayscale")) unless rating.floor == 5 %>
 <% end %>
-<% (4-@rating.floor).times do %>
+<% (4-rating.floor).times do %>
   <%= image_tag("d_empty.png",  class: "rating-diamond m-1 diamond-grayscale") %>
 <% end %>
