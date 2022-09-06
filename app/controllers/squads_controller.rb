@@ -8,7 +8,6 @@ class SquadsController < ApplicationController
     @squad_message = SquadMessage.new()
     @membership = Membership.where(user:current_user, squad: @squad)[0]
     authorize @squad
-
   end
 
   def new
