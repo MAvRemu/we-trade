@@ -4,7 +4,7 @@
   <div class="row justify-content-center pt-5">
     <div class="col-9">
       <h1 class="mb-4" style="color: #625F5A;">Cryptos (<%= @cryptos.total_count %>)</h1>
-      <div class="d-flex filters justify-content-center align-items-center mb-4">
+      <div class="d-flex filters align-items-center mb-4">
         <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "rank" ? "bcg-secondary" : "" %>">
           <%= image_tag "rank.png" %>
           <%= link_to "Rank",  cryptos_path(filter: "rank")%>
@@ -25,7 +25,7 @@
           <%= image_tag "comments.png" %>
           <%= link_to "Comments",  cryptos_path(filter: "comments")%>
         </div>
-        <%= form_with url: cryptos_path, method: :get, class: "d-flex" do %>
+        <%= form_with url: cryptos_path, method: :get, class: "d-flex ms-auto" do %>
           <%= text_field_tag :query,
             params[:query],
             class: "form-control ms-5",
@@ -35,7 +35,7 @@
         <% end %>
       </div>
     <% @cryptos.each do |c| %>
-      <div class="d-flex crypto-card align-items-center m-2">
+      <div class="d-flex crypto-card align-items-center mt-3">
         <%= image_tag c.image_url, class: "crypto-logo m-2" %>
         <div>
           <%= link_to c.name, crypto_path(c), class: "crypto-name" %>
