@@ -1,38 +1,46 @@
 <% element.post_comments.order("created_at ASC").each do |c| %>
   <div data-controller="nested-comments">
     <div class="row justify-content-md-center mt-4 mb-1">
-      <div class="d-flex comment col-9 p-3 rounded-4">
-        <%= cl_image_tag c.user.photo.key, class: "comment-avatar me-4" %>
-        <div class="me-auto">
-          <div class="d-flex align-items-center">
-            <h4 class="m-0 me-2"><%= c.user.username %></h4>
-            <h5><%= time_ago_in_words(c.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
+      <div class="col-9 p-0">
+        <div class="d-flex comment rounded-3">
+          <div id="block-left-colored"></div>
+          <div class="d-flex p-3 width-100">
+            <%= cl_image_tag c.user.photo.key, class: "avatar-large me-4" %>
+            <div class="me-auto">
+              <div class="d-flex align-items-center">
+                <h4 class="m-0 me-2"><%= c.user.username %></h4>
+                <h5><%= time_ago_in_words(c.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
+              </div>
+              <p class="m-0"><%= c.content_trix %></p>
+            </div>
+            <i class="align-self-end" data-action="click->nested-comments#revealContent">Reply</i>
           </div>
-          <p class="m-0"><%= c.content_trix %></p>
         </div>
-        <i class="align-self-end" data-action="click->nested-comments#revealContent">Reply</i>
-      </div>
-    </div>
 
-    <div class="row justify-content-md-center mt-1 mb-1">
-      <% c.post_nested_comments.each do |cn| %>
-        <div class="d-flex comment col-7 p-2 rounded-4 m-1">
-        <%= cl_image_tag cn.user.photo.key, class: "comment-avatar me-4" %>
-        <div class="me-auto">
-          <div class="d-flex align-items-center">
-            <h4 class="m-0 me-2"><%= cn.user.username %></h4>
-            <h5><%= time_ago_in_words(c.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
-          </div>
-            <p class="m-0 m-0"><%= cn.content_trix %></p>
-          </div>
-        </div>
-      <% end %>
-      <div class="row justify-content-center">
-        <div class="col-7 pb-3 p-0 rounded-4">
-          <%= simple_form_for [element, c, comment_nested], html: { class: "p-3 rounded-4 bg-white visually-hidden", 'data-nested-comments-target' =>  "form"} do |f| %>
-            <%= f.rich_text_area :content_trix, id: c.id, placeholder: 'your comment....', label: 'Comment' %>
-            <%= f.submit 'Reply' %>
+        <div class="row justify-content-end mt-1 mb-1">
+          <% c.post_nested_comments.each do |cn| %>
+            <div class="d-flex col-11 p-0 rounded-3 m-1">
+            <div id="block-left-colored"></div>
+            <div class="d-flex ps-2 pt-2 pe-2 width-100 comment-sm ">
+              <%= cl_image_tag cn.user.photo.key, class: "avatar me-2" %>
+              <div class="">
+                <div class="d-flex">
+                  <h4 class="m-0 me-2"><%= cn.user.username %></h4>
+                  <h5><%= time_ago_in_words(c.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
+                </div>
+                  <p class="m-0 m-0"><%= cn.content_trix %></p>
+                </div>
+              </div>
+            </div>
           <% end %>
+          <div class="row justify-content-end mt-1 mb-1">
+            <div class="col-11 pb-3 p-0 rounded-4">
+              <%= simple_form_for [element, c, comment_nested], html: { class: "p-3 rounded-4 bg-white visually-hidden", 'data-nested-comments-target' =>  "form"} do |f| %>
+                <%= f.rich_text_area :content_trix, id: c.id, placeholder: 'your comment....', label: 'Comment' %>
+                <%= f.submit 'Reply' %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -40,7 +48,7 @@
 <% end %>
 
 
-<div class="row justify-content-center">
+<div class="row justify-content-center", id="link-to-comment">
   <div class="col-9 p-3 rounded-4">
     <%= simple_form_for [element, comment], html: { class: "p-3 rounded-4 bg-white"}  do  |c| %>
     <%= c.rich_text_area :content_trix, id: element.id, placeholder: 'your comment....', label: 'Comment' %>

@@ -35,7 +35,7 @@ def generate_posts(array)
     "The Metaverse, and my cryptos I am keeping an eye one ;)"
   ]
   20.times do
-    Post.create!(user: array.sample, title: content.sample, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div><ul><li>ut labore et dolore magna aliqua.&nbsp;</li><li>Ut enim ad minim veniam,&nbsp;</li><li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li></ul><div><a href="https://www.google.com/">Duis aute irure dolor in reprehenderit</a></div>' )
+    Post.create!(user: array.sample, title: content.sample, content_trix: "<div><strong>Lorem ipsum dolor sit amet</strong>, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br><br><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, </strong>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation:</div><ul><li>ullamco laboris nisi ut aliquip ex ea commodo consequat</li><li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat </li><li>nulla pariatur. Excepteur sint occaecat cupidatat non proident, </li><li>sunt in culpa qui officia deserunt mollit anim id est laborum.</li></ul><div><br><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit</strong></div>")
   end
 end
 
@@ -80,9 +80,13 @@ PostVote.destroy_all
 CryptoBookmark.destroy_all
 PostBookmark.destroy_all
 Post.destroy_all
+Watchlist.destroy_all
+Watching.destroy_all
 Membership.destroy_all
 Squad.destroy_all
 User.destroy_all
+puts "Deleted all data in DB"
+
 
 marius = User.new(email: "marius@hotmail.com", username: "Marius", password: "marius", admin: true)
 mantas = User.new(email: "mantas@hotmail.com", username: "Mantas", password: "mantas", admin: true)

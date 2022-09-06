@@ -10,7 +10,7 @@ export default class extends Controller {
 
   revealContent() {
     console.log(this.formTarget.classList)
-    this.formTarget.classList.remove("visually-hidden")
+    this.formTarget.classList.toggle("visually-hidden")
   }
 
 }

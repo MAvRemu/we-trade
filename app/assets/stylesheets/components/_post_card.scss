@@ -21,6 +21,7 @@
   h6 {
     margin: 0;
     font-size: 15px;
+    color: $dark;
   }
 
   img {
@@ -36,27 +37,30 @@
 }
 
 .font-color-green {
-  color: rgb(0, 175, 0);
+  color: rgb(0, 175, 0) !important;
 }
 
 .font-color-red {
-  color: red;
+  color: red !important;
 
 }
 
 .post-title {
-  font-size: 20px;
+  font-size: 19px;
   text-decoration: none;
-  color: black;
+  color: $dark;
+  font-weight: bold;
 }
+
 
 .post-title:hover {
-  font-size: 20px;
+  font-size: 19px;
   text-decoration: none;
   color: $second;
+  transition: 0.3s;
 }
 
-#block-colored {
+#block-left-colored {
   background-color: $main;
   width: 8px;
   border-top-left-radius: 3px;
