@@ -1,5 +1,12 @@
-<div data-crypto-target="list">
+
+<div data-crypto-target="list" class="squad-autocomplete">
   <% @cryptos.each do |c|  %>
-    <h6><%= c.name %></h6>
+    <div class="single-suggestion py-2 d-flex align-items-center">
+
+      <%= link_to squad_watchings_path(squad, :crypto => c.id), data: {'turbo-method' =>  :post,  'turbo-confirm': "Add #{c.name} to your watchlist?"} do  %>
+          <%=image_tag(c.image_url, size:"35", class: "sug-img mx-2") %>
+          <h6 class="align-self-center"><%= c.name %></h6>
+       <% end  %>
+    </div>
   <% end  %>
 </div>
