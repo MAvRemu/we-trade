@@ -1,22 +1,22 @@
 <div class="row justify-content-md-center p-0">
   <div class="d-flex col-7 posts-filters align-items-center mb-2 mt-5" >
-    <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "new" ? "bcg-lightgrey" : "" %>">
+    <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "new" ? "bcg-secondary" : "" %>">
       <%= image_tag "new.png" %>
       <%= link_to "New",  posts_path(filter: "new")%>
     </div>
-    <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "hot" ? "bcg-lightgrey" : "" %>">
+    <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "hot" ? "bcg-secondary" : "" %>">
       <%= image_tag "hot.png" %>
       <%= link_to "Hot",  posts_path(filter: "hot")%>
     </div>
-    <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "votes" ? "bcg-lightgrey" : "" %>">
+    <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "votes" ? "bcg-secondary" : "" %>">
       <%= image_tag "votes.png" %>
       <%= link_to "Upvotes",  posts_path(filter: "votes")%>
     </div>
-    <div class="p-2 rounded-3 me-auto filter-box <%= params[:filter] == "comments" ? "bcg-lightgrey" : "" %>">
+    <div class="p-2 rounded-3 me-auto filter-box <%= params[:filter] == "comments" ? "bcg-secondary" : "" %>">
       <%= image_tag "comments.png" %>
       <%= link_to "Comments",  posts_path(filter: "comments")%>
     </div>
-    <%= link_to "Create Post",  new_post_path, class: "p-2 bcg-lightgrey rounded-3 filter-box"%>
+    <%= link_to "Create Post",  new_post_path, class: "p-2 bcg-secondary rounded-3 filter-box"%>
   </div>
 </div>
 
