@@ -1,31 +1,30 @@
 <div class="container">
-  <div class="d-flex post-main  rounded-4 mt-5 mb-3">
-    <div class="p-3">
-      <div class="d-flex align-items-center mb-2">
-        <%= cl_image_tag @post.user.photo.key, class: "comment-avatar me-3" %>
-        <h4 class=""><%= @post.user.username %></h4>
-        <h5><%= time_ago_in_words(@post.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
-        <h1 class="mb-1"><%=  @post.title%></h1>
-      </div>
-      <div class="d-flex">
-        <div style="width:82px;"></div>
-        <p class="mb-1"><%=  @post.content_trix%></p>
-        <div class="d-flex post-voter align-self-end ms-auto">
-          <%= simple_form_for([@post, @post_vote]) do |f| %>
-            <%= f.input :upvote, as: :hidden, input_html: {value: -1}%>
-            <%= f.submit "downvote"%>
-          <% end %>
-          <% upvotes = @post.post_votes.sum {|vote| vote.upvote }   %>
-          <h1 class="<%= upvotes > 0 ? "font-color-green" : "font-color-red" %>"><%= upvotes > 0 ? "+" : "" %><%= upvotes %></h1>
-          <%= simple_form_for([@post, @post_vote]) do |f| %>
-            <%= f.input :upvote, as: :hidden, input_html: {value: 1}%>
-            <%= f.submit "upvote"%>
-          <% end %>
-          <% if @post_bookmark_present %>
-            <%= button_to "delete favorite", post_bookmark_path(@post_bookmark), method: :delete%>
-          <% else %>
-            <%= button_to "favorite", post_post_bookmarks_path(@post)%>
-          <% end %>
+  <div class="row justify-content-md-center">
+    <div class="d-flex col-9 align-items-center mt-5 mb-3 p-0" >
+      <div class="post-main width-100">
+        <div id="block-top-colored"></div>
+        <div class="p-3">
+          <h1 class="m-3"><%=  @post.title%></h1>
+          <div class="d-flex align-items-center mb-3 ms-3 me-2">
+            <%= cl_image_tag @post.user.photo.key, class: "avatar-xl" %>
+            <h4 class=""><%= @post.user.username %></h4>
+            <h5><%= time_ago_in_words(@post.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
+          </div>
+          <div class="m-3"><%=  @post.content_trix%></div>
+          <div class="d-flex mt-5">
+
+            <%= button_to "Upvote",  post_post_votes_path(@post), class: "p-2 bcg-secondary rounded-3 filter-box", params: {upvote: 1}%>
+            <% upvotes = @post.post_votes.sum {|vote| vote.upvote } %> <h1 class="ms-2 me-2 <%= upvotes > 0 ? "font-color-green" : "font-color-red" %>"><%= upvotes > 0 ? "+" : "" %><%= upvotes %></h1>
+            <%= button_to "Downvote",  post_post_votes_path(@post), class: "p-2 me-auto bcg-secondary rounded-3 filter-box", params: {upvote: -1}%>
+
+            <a href="#link-to-comment" class="ms-auto p-2 me-2 bcg-main rounded-3 filter-box no-decoration">Reply</a>
+
+            <% if @post_bookmark_present %>
+              <%= button_to "Unfavorite", post_bookmark_path(@post_bookmark), method: :delete, form_class: "", class: "p-2  bcg-main rounded-3 filter-box"%>
+            <% else %>
+              <%= button_to "Favorite", post_post_bookmarks_path(@post), form_class: "", class: "p-2  bcg-main rounded-3 filter-box"%>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

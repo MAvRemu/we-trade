@@ -1,27 +1,32 @@
 .post-main {
   background-color: white;
-  border-radius: 15px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
 
   h4 {
-    margin: 0 0 0 0;
-    font-size: 25px;
-    color: rgb(0, 0, 0);
+    font-size: 24px;
+    color: $dark;
+    margin: 0 0 0 10px;
   }
 
   h5 {
     color: darkgray;
-    margin: 0 20px 0 20px;
+    margin: 0 0 0 10px;
     font-size: 20px;
   }
 
   h1 {
-    font-size: 35px;
+    font-size: 30px;
+    color: $dark;
+    font-weight: bold;
   }
 }
 
-.post-voter {
 
-  h1 {
-    margin: 0;
-  }
+#block-top-colored {
+  background-color: $main;
+  height: 8px;
+  width: 100%;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }

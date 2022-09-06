@@ -1,0 +1,21 @@
+.bcg-secondary {
+  background-color: $second;
+  color: black !important;
+
+  a {
+  color: black;
+  }
+}
+
+.bcg-main {
+  background-color: $main;
+  color: white !important;
+
+  a {
+  color: white;
+  }
+}
+
+.no-decoration {
+  text-decoration: none;
+}

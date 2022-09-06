@@ -21,8 +21,9 @@ class CryptosController < ApplicationController
   def show
     @crypto = Crypto.find(params[:id])
     authorize @crypto
-    @rating = @crypto.crypto_ratings.sum(:rating).to_f / @crypto.crypto_ratings.size
     @comment = CryptoComment.new
+    @comment_nested = CryptoNestedComment.new
+    @rating = @crypto.crypto_ratings.sum(:rating).to_f / @crypto.crypto_ratings.size
     @crypto_bookmark_present = CryptoBookmark.exists?(user: current_user, crypto: @crypto)
     if @crypto_bookmark_present
       @crypto_bookmark = CryptoBookmark.find_by(user: current_user, crypto: @crypto)

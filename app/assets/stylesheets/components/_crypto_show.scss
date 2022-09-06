@@ -1,5 +1,36 @@
+.crypto-main {
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
+
+  h4 {
+    font-size: 24px;
+    color: $dark;
+    margin: 0 0 0 10px;
+  }
+
+  h5 {
+    color: darkgray;
+    margin: 0 0 0 10px;
+    font-size: 20px;
+  }
+
+  h3 {
+    color: $dark;
+    margin: 0 0 0 10px;
+    font-size: 26px;
+  }
+
+  h1 {
+    font-size: 30px;
+    color: $dark;
+    font-weight: bold;
+  }
+}
+
+
 .crypto-logo-show {
-  width: 100px;
+  width: 120px;
   height: 100%;
 }
 
@@ -30,7 +61,7 @@
 
   img {
     height: 30px;
-    filter: opacity(70%);
+    filter: opacity(50%);
     margin: 0 10px 0 0;
   }
 }

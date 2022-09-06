@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #61988E;
+  background: rgba(244, 241, 238, 1);
+  border-bottom: 4px solid $main;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -14,16 +15,16 @@
 .nav-lnk {
   text-decoration: none;
   font-weight: normal;
-  margin-right: 8px;
-  color: #b9d0cc;
-  font-size: 20px;
+  margin-right: 30px;
+  color: $dark;
+  font-size: 18px;
   transition: color 0.3s ease;
 }
 
 #lnk{
-  color: #b9d0cc !important ;
+  color: $dark !important ;
   transition: color 0.3s ease;
 }
 #lnk:hover{
-  color: white !important ;
+  color: black !important ;
 }
