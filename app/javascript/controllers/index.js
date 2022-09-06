@@ -15,3 +15,6 @@ application.register("hello", HelloController)
 
 import NestedCommentsController from "./nested_comments_controller"
 application.register("nested-comments", NestedCommentsController)
+
+import TrackedController from "./tracked_controller"
+application.register("tracked", TrackedController)

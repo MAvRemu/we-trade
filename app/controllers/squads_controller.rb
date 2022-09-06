@@ -28,22 +28,19 @@ class SquadsController < ApplicationController
   end
 
   def destroy
+
   end
 
   def join
   end
 
   def addToWatchlist
-
     @squad = Squad.find(params[:squad_id])
     a = params.permit(:crypto)
     a = a["crypto"].to_i
     Watching.create!(watchlist: @squad.watchlist, crypto: Crypto.find(a))
-
     authorize @squad
     redirect_to squad_path(@squad)
-
-
   end
   private
 end

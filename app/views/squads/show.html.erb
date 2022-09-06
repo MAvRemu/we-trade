@@ -1,18 +1,26 @@
 
 
-<div class="showsquad">
+<div class="showsquad my-5">
   <div class="container watchlist">
     <div class="row">
       <% ((@squad.watchlist).cryptos).each  do |crypto|%>
-        <div class="col-sm-2">
-          <div class="watchlist-item d-flex flex-column justify-content-center align-items-center">
-            <h6 class='my-2'><%=crypto.ticker  %></h6>
-            <%= image_tag(crypto.image_url, size:"35", class: "watchlist-img") %>
+        <div data-controller="tracked" class="col-sm-2 align-items-center d-flex flex-col">
+          <div class="watchlist-item d-flex flex-column  align-items-center shadow rounded" data-tracked-target="box">
+            <%= link_to crypto_path(crypto), class:"text-decoration-none logo-link" do %>
+              <h6 class="text-center"><%=crypto.ticker  %></h6>
+              <%= image_tag(crypto.image_url, size:"35", class: "watchlist-img") %>
+            <% end %>
+          </div>
+          <div class="untrack_button" data-tracked-target="expand">
+            <%= link_to watching_path((@squad.watchlist).watchings.where(crypto: crypto)[0]), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this item?"} do %>
+              <i class="fa-solid fa-x fontx"></i>
+            <% end  %>
           </div>
         </div>
       <% end  %>
     </div>
-    <div data-controller="crypto">
+    <div data-controller="crypto" class="search-br">
+      <p class="visible shrink" data-crypto-target="squadid" style="color:#dedede"> <%= @squad.id %> </p>
       <%= form_with url: squad_watchings_path(@squad), method: :get, data: {crypto_target:"form"}, class: "d-flex" do %>
         <%= text_field_tag :query,
           params[:query],
@@ -21,12 +29,11 @@
           placeholder: "add a crypto to your squad watchlist"
         %>
       <% end %>
-      <p class="visible" data-crypto-target="squadid" style="color:#dedede"> <%= @squad.id %> </p>
       <div data-crypto-target="list"></div>
       </div>
     </div>
   </div>
-  <div class="container chatroom" data-controller="chatroom-subscription"
+  <div class="container chatroom my-5" data-controller="chatroom-subscription"
     data-chatroom-subscription-chatroom-id-value="<%= @squad.chatroom.id %>"
   >
     <h1>Squad Chat</h1>
@@ -49,9 +56,10 @@
   </div>
 
   <% if @membership  %>
+  <div class="text-center my-3">
     <%= link_to "Leave Squad", membership_path(@membership), class: 'leave-button my-3',
         data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  </div>
   <% end  %>
-
 
 </div>
