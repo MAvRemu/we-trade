@@ -38,14 +38,20 @@
   </div>
 
   <div div class="my-3">
-    <h2 class="eggplant-text">Open Squads</h2>
+    <div class="d-flex justify-content-between"><h2 class="eggplant-text">Open Squads</h2>
+    <div>
+        <%= link_to new_squad_path do %>
+          <div class="joinbutton"> create squad </div>
+        <% end  %>
+    </div>
+    </div>
     <div class="squad-card container">
       <div class="row">
         <%(Squad.where(open: true)).each do |s| %>
           <% if !s.users.include?(current_user) %>
             <div class="d-flex flex-column squad-card-container justify-content-start">
               <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: $eggplant; word-wrap: normal;" do %>
-                <div class="mx-2">
+                  <div class="mx-2">
                     <h4 class="eggplant-text"><%= s.title %></h4>
                     <div style="width: 100%; height: 3em;" class="d-flex justify-content-around align-items-center">
                       <%= cl_image_tag s.user.photo.key, class: "squad-avatar" %>
@@ -64,16 +70,16 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="squad-description mx-2"><%= s.description %></div>
-              <% end %>
-
-              <%= simple_form_for Membership.new(), url: squad_memberships_path(s) do |f| %>
-                <%= f.button :submit, class:"joinbutton", value: "join" %>
-              <% end %>
+              <div class="squad-description mx-2"><%= s.description %></div>
             <% end %>
-          </div>
-        <% end %>
+
+            <%= simple_form_for Membership.new(), url: squad_memberships_path(s) do |f| %>
+              <%= f.button :submit, class:"joinbutton", value: "join" %>
+            <% end %>
+          <% end %>
+          <% end %>
       </div>
     </div>
   </div>
+</div>
 </div>

@@ -7,6 +7,9 @@ class SquadPolicy < ApplicationPolicy
     end
   end
 
+  def create?
+    user
+  end
 
   def show?
     true

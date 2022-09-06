@@ -12,17 +12,24 @@ class SquadsController < ApplicationController
   end
 
   def new
+    @squad = Squad.new();
+    authorize @squad
   end
 
   def create
     chatroom = Chatroom.create()
-    @squad = Squad.new(user: current_user, title: params[:title], description: params[:description], chatroom: chatroom)
-    authorize @squad
+    @squad = Squad.new(squad_params)
+    @squad.chatroom = chatroom
+    watchlist = Watchlist.create()
+    @squad.watchlist = watchlist
+    @squad.user = current_user
     @squad.save
+    watchlist.squad = @squad
     chatroom.squad = @squad
     chatroom.save
+    watchlist.save
+    authorize @squad
     Membership.create(user:current_user, squad: @squad)
-    watchlist = Watchlist.create!(squad: @squad);
     @squad.watchlist = watchlist
     @squad.save
   end
@@ -42,5 +49,10 @@ class SquadsController < ApplicationController
     authorize @squad
     redirect_to squad_path(@squad)
   end
+
   private
+  def squad_params
+    params.require(:squad).permit(:description, :title)
+  end
+
 end
