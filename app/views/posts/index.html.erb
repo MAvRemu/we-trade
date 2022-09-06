@@ -1,5 +1,5 @@
 <div class="row justify-content-md-center p-0">
-  <div class="d-flex col-7 posts-filters align-items-center mb-2 mt-5" >
+  <div class="d-flex col-7 posts-filters align-items-center mb-4 mt-5" >
     <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "new" ? "bcg-secondary" : "" %>">
       <%= image_tag "new.png" %>
       <%= link_to "New",  posts_path(filter: "new")%>

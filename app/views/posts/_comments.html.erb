@@ -26,7 +26,7 @@
               <div class="">
                 <div class="d-flex">
                   <h4 class="m-0 me-2"><%= cn.user.username %></h4>
-                  <h5><%= time_ago_in_words(c.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
+                  <h5><%= time_ago_in_words(cn.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
                 </div>
                   <p class="m-0 m-0"><%= cn.content_trix %></p>
                 </div>

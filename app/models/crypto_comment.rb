@@ -6,5 +6,6 @@ class CryptoComment < ApplicationRecord
   validates :crypto, presence: true
   validates :content_trix, presence: true
   has_rich_text :content_trix
+  has_many :crypto_nested_comments
 
 end

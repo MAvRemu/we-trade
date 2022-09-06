@@ -21,7 +21,10 @@ Rails.application.routes.draw do
   resources :post_bookmarks, only: [:destroy]
 
   resources :cryptos do
-    resources :crypto_comments, only: [:create, :destroy]
+    resources :crypto_comments, only: [:create, :destroy] do
+      resources :crypto_nested_comments, only: [:create]
+    end
+
     resources :crypto_bookmarks, only: [:create, :update]
   end
   resources :crypto_bookmarks, only: [:destroy]

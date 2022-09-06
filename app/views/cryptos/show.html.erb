@@ -1,47 +1,45 @@
-
 <div class="container">
-  <div class="d-flex mt-5">
-    <%= image_tag @crypto.image_url, class: "crypto-logo-show me-3" %>
-    <div>
-      <div class="d-flex align-items-center crypto-show">
-        <h1 class="me-3"><%=  @crypto.name%></h1>
-        <h2 class="me-3"><%= @crypto.ticker.upcase %></h2>
-        <% @rating.floor.times do %>
-          <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
-        <% end %>
-        <% if @rating.modulo(1) >= 0.25 && @rating.modulo(1) < 0.75 %>
-          <%= image_tag("d_50.png", class: "rating-diamond m-1") %>
-        <% elsif @rating.modulo(1) >= 0.75 %>
-          <%= image_tag("d_full.png", class: "rating-diamond m-1") %>
-        <% else %>
-         <%= (image_tag("d_empty.png", class: "rating-diamond m-1 diamond-grayscale")) unless @rating.floor == 5 %>
-        <% end %>
-        <% (4-@rating.floor).times do %>
-          <%= image_tag("d_empty.png",  class: "rating-diamond m-1 diamond-grayscale") %>
-        <% end %>
-        <h3>  <%= @rating.round(1) %></h3>
-      </div>
-      <div class="d-flex col-11 crypto-details mt-3 mb-5 align-items-center">
-        <%= image_tag "rank.png" %>
-        <h3>#<%= @crypto.rank %></h3>
-        <%= image_tag "dollar.png" %>
-        <h3 class="me-2"><%= @crypto.price.round(0) %></h3>
-        <%= image_tag "votes.png" %>
-        <h3><%= @crypto.crypto_ratings.count %></h3>
-        <%= image_tag "comments.png" %>
-        <h3> <%= @crypto.crypto_comments.count %> <%= time_ago_in_words(@crypto.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %></h3>
-        <%= image_tag "mcap.png" %>
-        <h3><%= @crypto.mcap_short %></h3>
-      <% if @crypto_bookmark_present %>
-        <%= button_to "delete favorite", crypto_bookmark_path(@crypto_bookmark), method: :delete%>
-      <% else %>
-        <%= button_to "favorite", crypto_crypto_bookmarks_path(@crypto)%>
-      <% end %>
+  <div class="row justify-content-md-center">
+    <div class="d-flex col-9 align-items-center mt-5 mb-3 p-0" >
+      <div class="crypto-main width-100">
+        <div id="block-top-colored"></div>
+        <div class="mt-3 p-3">
+          <div class="d-flex  mb-3 ms-3 me-2">
+            <%= image_tag @crypto.image_url, class: "crypto-logo-show me-3" %>
+            <div>
+              <div class="d-flex align-items-center">
+                <h4 class="m-0"><%= @crypto.name %></h4>
+                <h5> <%= @crypto.ticker.upcase %></h5>
+                <%= render 'ratings' %>
+                <h3>  <%= @rating.round(1) %></h3>
+              </div>
+              <div class="d-flex mt-3 crypto-details align-items-center">
+                <%= image_tag "rank.png" %>
+                <h3>#<%= @crypto.rank %></h3>
+                <%= image_tag "dollar.png" %>
+                <h3 class="me-2"><%= @crypto.price.round(0) %></h3>
+                <%= image_tag "votes.png" %>
+                <h3><%= @crypto.crypto_ratings.count %></h3>
+                <%= image_tag "comments.png" %>
+                <h3> <%= @crypto.crypto_comments.count %> <%= time_ago_in_words(@crypto.crypto_comments.last.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %></h3>
+                <%= image_tag "mcap.png" %>
+                <h3><%= @crypto.mcap_short %></h3>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex">
+            <a href="#link-to-comment" class="ms-auto p-2 me-2 bcg-main rounded-3 filter-box no-decoration">Reply</a>
+
+            <% if @crypto_bookmark_present %>
+              <%= button_to "Unfavorite", crypto_bookmark_path(@crypto_bookmark), method: :delete, form_class: "", class: "p-2  bcg-main rounded-3 filter-box"%>
+            <% else %>
+              <%= button_to "Favorite", crypto_crypto_bookmarks_path(@crypto), form_class: "", class: "p-2  bcg-main rounded-3 filter-box"%>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-
-  <%= render 'comments', element: @crypto, comment: @comment %>
+  <%= render 'comments', element: @crypto, comment: @comment, comment_nested: @comment_nested  %>
 
 </div>

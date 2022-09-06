@@ -7,10 +7,11 @@ def download_cryptos
   UpdateCryptosJob.perform_now
 end
 
-def generate_crypto_comments(cryptos, marius)
+def generate_crypto_comments(cryptos, array)
   cryptos.each do |c|
     rand(1..3).times do
-      CryptoComment.create!(user: marius, crypto: c, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div><ul><li>ut labore et dolore magna aliqua.&nbsp;</li><li>Ut enim ad minim veniam,&nbsp;</li><li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li></ul><div><a href="https://www.google.com/">Duis aute irure dolor in reprehenderit</a></div>')
+      crypto = CryptoComment.create!(user: array.sample, crypto: c, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div><ul><li>ut labore et dolore magna aliqua.&nbsp;</li><li>Ut enim ad minim veniam,&nbsp;</li><li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li></ul><div><a href="https://www.google.com/">Duis aute irure dolor in reprehenderit</a></div>')
+      rand(0..2).times { CryptoNestedComment.create!(user: array.sample, crypto_comment: crypto, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div>') }
     end
   end
 end
@@ -43,7 +44,7 @@ def generate_post_comments(posts, array)
   posts.each do |p|
     rand(1..7).times do
       post = PostComment.create!(user: array.sample, post: p, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div><ul><li>ut labore et dolore magna aliqua.&nbsp;</li><li>Ut enim ad minim veniam,&nbsp;</li><li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li></ul><div><a href="https://www.google.com/">Duis aute irure dolor in reprehenderit</a></div>')
-      rand(2..3).times { PostNestedComment.create!(user: array.sample, post_comment: post, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div>') }
+      rand(0..3).times { PostNestedComment.create!(user: array.sample, post_comment: post, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div>') }
     end
   end
 end
@@ -73,6 +74,7 @@ end
 
 # main seeds
 CryptoComment.destroy_all
+CryptoNestedComment.destroy_all
 PostNestedComment.destroy_all
 PostComment.destroy_all
 CryptoRating.destroy_all
@@ -121,7 +123,7 @@ download_cryptos
 puts "created cryptos"
 
 cryptos = Crypto.all
-generate_crypto_comments(cryptos, marius)
+generate_crypto_comments(cryptos, users_array)
 puts "created cryptos comments"
 
 generate_crypto_ratings(cryptos, users_array)
