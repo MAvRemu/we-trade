@@ -1,0 +1,30 @@
+.posts-filters {
+  text-decoration: none;
+  a {
+    text-decoration: none;
+    color: $dark;
+    font-size: 16px;
+  }
+  img {
+    height: 16px;
+    filter: opacity(35%);
+    margin: 0;
+  }
+
+  h5 {
+    margin: 0 10px 0 0;
+    font-size: 16px;
+    color: $dark;
+  }
+
+  padding: 0;
+}
+
+.bcg-lightgrey {
+  background-color: $second;
+  color: black !important;
+
+  a {
+  color: black;
+  }
+}
