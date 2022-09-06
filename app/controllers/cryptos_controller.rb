@@ -14,7 +14,7 @@ class CryptosController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.text { render partial: "cryptos/list", locals: {cryptos: @cryptos}, formats: [:html] }
+      format.text { render partial: "cryptos/list", locals: {cryptos: @cryptos, squad: Squad.find(params[:squad_id])}, formats: [:html] }
     end
   end
 

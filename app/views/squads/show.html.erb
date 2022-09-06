@@ -7,7 +7,7 @@
         <div class="col-sm-2">
           <div class="watchlist-item d-flex flex-column justify-content-center align-items-center">
             <h6 class='my-2'><%=crypto.ticker  %></h6>
-            <%= image_tag(crypto.image_url, class: "watchlist-img") %>
+            <%= image_tag(crypto.image_url, size:"35", class: "watchlist-img") %>
           </div>
         </div>
       <% end  %>
@@ -21,8 +21,7 @@
           placeholder: "add a crypto to your squad watchlist"
         %>
       <% end %>
-
-      <button data-crypto-target="suggestions" data-action="click->crypto#cmon"></button>
+      <p class="visible" data-crypto-target="squadid" style="color:#dedede"> <%= @squad.id %> </p>
       <div data-crypto-target="list"></div>
       </div>
     </div>

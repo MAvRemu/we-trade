@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :squad_messages, only: [:create, :destroy]
     resources :memberships, only: [:create]
 
-    get '/watchings', to: 'squads#addToWatchlist'
+    post '/watchings', to: 'squads#addToWatchlist'
   end
   resources :memberships, only:[:destroy]
 
