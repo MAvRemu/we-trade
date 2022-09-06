@@ -8,3 +8,22 @@
   height: 50px;
   width: 50px;
 }
+
+.img-sug{
+  height: 15px;
+  width: 15px;
+}
+.single-suggestion{
+  background-color: white;
+  border: solid rgb(232, 223, 232) 2px;
+  z-index: 5;
+
+}
+.squad-autocomplete{
+  display: inline-block;
+
+  position: absolute;
+  height: 200px;
+  z-index: 5;
+  overflow: hidden scroll;
+}
