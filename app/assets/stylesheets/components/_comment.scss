@@ -1,21 +1,33 @@
-.comment-avatar {
+.comment {
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
+  background-color: rgba(255, 255, 255, 1);
+  h4 {
+    margin: 20px 0 0 0;
+    color: $dark;
+}
 
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
+  h5 {
+    color: gray;
+    margin: 0;
+  }
 
 }
 
-.comment {
-  background-color: white;
-  background-color: rgba(255, 255, 255, 0.8);
+.comment-sm {
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
+  background-color: rgba(255, 255, 255, 1);
   h4 {
     margin: 20px 0 0 0;
+    font-size: 18px;
+    color: $dark;
   }
 
   h5 {
     color: gray;
     margin: 0;
+    font-size: 18px;
   }
 
 }

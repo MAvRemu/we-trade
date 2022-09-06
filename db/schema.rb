@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_05_140406) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_06_121738) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_140406) do
     t.index ["crypto_comment_id"], name: "index_crypto_comments_on_crypto_comment_id"
     t.index ["crypto_id"], name: "index_crypto_comments_on_crypto_id"
     t.index ["user_id"], name: "index_crypto_comments_on_user_id"
+  end
+
+  create_table "crypto_nested_comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "crypto_comment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crypto_comment_id"], name: "index_crypto_nested_comments_on_crypto_comment_id"
+    t.index ["user_id"], name: "index_crypto_nested_comments_on_user_id"
   end
 
   create_table "crypto_ratings", force: :cascade do |t|
@@ -227,6 +236,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_140406) do
   add_foreign_key "crypto_comments", "crypto_comments"
   add_foreign_key "crypto_comments", "cryptos"
   add_foreign_key "crypto_comments", "users"
+  add_foreign_key "crypto_nested_comments", "crypto_comments"
+  add_foreign_key "crypto_nested_comments", "users"
   add_foreign_key "crypto_ratings", "cryptos"
   add_foreign_key "crypto_ratings", "users"
   add_foreign_key "memberships", "squads"
