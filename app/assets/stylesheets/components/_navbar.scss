@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: rgba(244, 241, 238, 1);
+  background: #486C77;
   border-bottom: 4px solid $main;
 }
 
@@ -22,9 +22,9 @@
 }
 
 #lnk{
-  color: $dark !important ;
+  color: #6596a5 !important ;
   transition: color 0.3s ease;
 }
 #lnk:hover{
-  color: black !important ;
+  color: #cbf2fe !important ;
 }

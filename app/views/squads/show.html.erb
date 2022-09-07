@@ -3,8 +3,9 @@
 <div class="showsquad my-5">
   <div class="container watchlist">
     <div class="row">
+
       <% ((@squad.watchlist).cryptos).each  do |crypto|%>
-        <div data-controller="tracked" class="col-sm-2 align-items-center d-flex flex-col">
+        <div data-controller="tracked" class="col-4 col-md-3 col-lg-2 align-items-center d-flex flex-col">
           <div class="watchlist-item d-flex flex-column  align-items-center shadow rounded" data-tracked-target="box">
             <%= link_to crypto_path(crypto), class:"text-decoration-none logo-link" do %>
               <h6 class="text-center"><%=crypto.ticker  %></h6>
@@ -18,6 +19,7 @@
           </div>
         </div>
       <% end  %>
+
     </div>
     <div data-controller="crypto" class="search-br">
       <p class="visible shrink" data-crypto-target="squadid" style="color:#dedede"> <%= @squad.id %> </p>
@@ -33,26 +35,54 @@
       </div>
     </div>
   </div>
-  <div class="container chatroom my-5" data-controller="chatroom-subscription"
-    data-chatroom-subscription-chatroom-id-value="<%= @squad.chatroom.id %>"
-  >
-    <h1>Squad Chat</h1>
 
-    <div class="messages" data-chatroom-subscription-target="messages">
-      <% @squad.chatroom.squad_messages.each do |message| %>
-        <%= render "shared/message", message: message %>
-      <% end %>
+  <div class="container">
+    <div class="row ">
+      <div class="col-12 col-lg-6 squad-info">
+        <div class="d-flex flex-column squad-attributes my-5 align-items-center" data-controller="squad-members-button">
+          <h1 class="sq-title"><%= @squad.title %></h2>
+          <h3 class="sq-desc"> <%= @squad.description %></h2>
+          <div class="d-flex align-items-center"><button class="sq-mem" data-squad-members-button-target="button" data-action="click->squad-members-button#open">Members</button></div>
+          <br><br>
+          <h6 class="sq-date">Created at: <%= (@squad.created_at).strftime("%m/%d/%Y") %></h6>
+          <div data-squad-members-button-target="members" class="members-hide">
+            <div class="container">
+              <% @squad.users.each do |u| %>
+                <div class="my-2 d-flex justify-content-center align-items-center">
+                  <%= cl_image_tag u.photo.key, class: "mem" %>
 
+                  <p class="d-flex mx-3 align-self-center"><%= u.username %></p>
+
+                </div>
+              <% end  %>
+            </div>
+            <button class="sq-close" data-squad-members-button-target="close" data-action="click->squad-members-button#close">close</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="chatroom my-4" data-controller="chatroom-subscription"
+          data-chatroom-subscription-chatroom-id-value="<%= @squad.chatroom.id %>">
+          <h1 class="sq-title">Squad Chat</h1>
+          <div class="messages" data-chatroom-subscription-target="messages">
+            <% @squad.chatroom.squad_messages.each do |message| %>
+              <%= render "shared/message", message: message %>
+            <% end %>
+          </div>
+          <div class="container">
+          <%= simple_form_for [@squad, @squad_message] ,
+                html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f|
+                %>
+                  <%= f.input :content,
+                  label: false,
+                  wrapper_html: {class: "flex-grow-1"}
+                  %>
+                  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+            <% end %>
+            </div>
+        </div>
+      </div>
     </div>
-    <%= simple_form_for [@squad, @squad_message] ,
-          html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f|
-          %>
-            <%= f.input :content,
-            label: false,
-            wrapper_html: {class: "flex-grow-1"}
-            %>
-            <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-      <% end %>
   </div>
 
   <% if @membership  %>

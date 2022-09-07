@@ -1,8 +1,16 @@
+
+<% if error %>
+  <div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <%= error %>
+  </div>
+<% end %>
+
+
 <div class="container">
   <div class="my-3 eggplant-text">
     <h1>Squads</h1>
   </div>
-
   <div div class="my-3">
     <h2 class="eggplant-text">My Squads</h2>
       <div class="squad-card container">
@@ -50,6 +58,7 @@
         <%(Squad.where(open: true)).each do |s| %>
           <% if !s.users.include?(current_user) %>
             <div class="d-flex flex-column squad-card-container justify-content-start">
+
               <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: $eggplant; word-wrap: normal;" do %>
                   <div class="mx-2">
                     <h4 class="eggplant-text"><%= s.title %></h4>
