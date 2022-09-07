@@ -9,5 +9,5 @@ class Squad < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :title, length: { minimum: 2 }
-  validates :title, length: { maximum: 12 }
+  validates :title, length: { maximum: 40 }
 end

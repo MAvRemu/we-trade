@@ -142,43 +142,70 @@ generate_crypto_bookmarks(cryptos, users_array)
 puts "created crypto bookmarks"
 
 puts "creating squads"
-c_t = Chatroom.create
-c_m = Chatroom.create
+c_t = Chatroom.create()
+c_m = Chatroom.create()
+c_marius =Chatroom.create()
 
-t = Squad.create(title: "Next DeFi Season, let's prepare", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", user: tan, chatroom: c_t)
-puts "yas"
-m = Squad.create(title: "The Metaverse, let's find a top 10!", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", user: mantas, chatroom: c_m)
-marius = Squad.create(title: "Microcap Research Group", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", user: mantas, chatroom: c_m)
+puts "chatroom"
+puts c_t.id
 
-w1 = Watchlist.create(squad: t);
-w2 = Watchlist.create(squad: m);
-w3 = Watchlist.create(squad: marius);
-t.update(watchlist: w1)
-m.update(watchlist: w2)
-marius.update(watchlist: w3)
+w1 = Watchlist.create();
+w2 = Watchlist.create();
+w3 = Watchlist.create();
 
-Watching.create(watchlist: t.watchlist, crypto_id: 2)
-Watching.create(watchlist: t.watchlist, crypto_id: 6)
-Watching.create(watchlist: t.watchlist, crypto_id: 5)
-Watching.create(watchlist: t.watchlist, crypto_id: 1)
-Watching.create(watchlist: t.watchlist, crypto_id: 11)
-Watching.create(watchlist: t.watchlist, crypto_id: 13)
 
-Watching.create(watchlist: m.watchlist, crypto_id: 6)
-Watching.create(watchlist: m.watchlist, crypto_id: 4)
-Watching.create(watchlist: m.watchlist, crypto_id: 2)
-Watching.create(watchlist: m.watchlist, crypto_id: 1)
-Watching.create(watchlist: m.watchlist, crypto_id: 9)
+t = Squad.new(title: "Next DeFi Season, let's prepare", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", user: tan)
+m = Squad.new(title: "The Metaverse, let's find a top 10!", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", user: mantas)
+mar = Squad.new(title: "Microcap Research Group", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", user: mantas);
 
-Watching.create(watchlist: marius.watchlist, crypto_id: 6)
-Watching.create(watchlist: marius.watchlist, crypto_id: 4)
-Watching.create(watchlist: marius.watchlist, crypto_id: 2)
-Watching.create(watchlist: marius.watchlist, crypto_id: 1)
-Watching.create(watchlist: marius.watchlist, crypto_id: 9)
+
+t.chatroom = c_t
+m.chatroom = c_m
+mar.chatroom = c_marius
+
+t.watchlist = w1;
+m.watchlist = w2
+mar.watchlist = w3
+
+t.save
+m.save
+mar.save
+
+w1.squad = t
+w1.save
+w2.squad = m
+w2.save
+w3.squad = mar
+w3.save
+
+puts"watchlist"
+puts w1.id
+
+puts"sq"
+puts t.id
+
+Watching.create!(watchlist: t.watchlist, crypto_id: 2)
+Watching.create!(watchlist: t.watchlist, crypto_id: 6)
+Watching.create!(watchlist: t.watchlist, crypto_id: 5)
+Watching.create!(watchlist: t.watchlist, crypto_id: 1)
+Watching.create!(watchlist: t.watchlist, crypto_id: 11)
+Watching.create!(watchlist: t.watchlist, crypto_id: 13)
+
+Watching.create!(watchlist: m.watchlist, crypto_id: 6)
+Watching.create!(watchlist: m.watchlist, crypto_id: 4)
+Watching.create!(watchlist: m.watchlist, crypto_id: 2)
+Watching.create!(watchlist: m.watchlist, crypto_id: 1)
+Watching.create!(watchlist: m.watchlist, crypto_id: 9)
+
+Watching.create!(watchlist: mar.watchlist, crypto_id: 6)
+Watching.create!(watchlist: mar.watchlist, crypto_id: 4)
+Watching.create!(watchlist: mar.watchlist, crypto_id: 2)
+Watching.create!(watchlist: mar.watchlist, crypto_id: 1)
+Watching.create!(watchlist: mar.watchlist, crypto_id: 9)
 
 puts "populating squads"
 
-Membership.create(squad: t, user: tan)
-Membership.create(squad: t, user: marius)
-Membership.create(squad: t, user: mantas)
-Membership.create(squad: m, user: mantas)
+Membership.create!(squad: t, user: tan)
+Membership.create!(squad: t, user: marius)
+Membership.create!(squad: t, user: mantas)
+Membership.create!(squad: m, user: mantas)
