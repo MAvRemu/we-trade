@@ -16,5 +16,8 @@ application.register("hello", HelloController)
 import NestedCommentsController from "./nested_comments_controller"
 application.register("nested-comments", NestedCommentsController)
 
+import SquadMembersButtonController from "./squad_members_button_controller"
+application.register("squad-members-button", SquadMembersButtonController)
+
 import TrackedController from "./tracked_controller"
 application.register("tracked", TrackedController)

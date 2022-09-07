@@ -2,9 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   include Pundit::Authorization
-
-
-
+  add_flash_types :info, :error, :warning, :alert
+  rescue_from Pundit::NotAuthorizedError, with: :permission_denied
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -26,10 +25,15 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
-  private
+private
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
 
+  def permission_denied
+    flash[:error] = "You don't have the proper permissions to view this page. Please join the squad to continue."
+    # this is giving a redirect loop error
+    redirect_to(request.referrer || root_path)
+  end
 end
