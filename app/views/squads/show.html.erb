@@ -39,18 +39,19 @@
   <div class="container">
     <div class="row ">
       <div class="col-12 col-lg-6 squad-info">
-        <div class="d-flex flex-column squad-attributes my-5" data-controller="squad-members-button">
+        <div class="d-flex flex-column squad-attributes my-5 align-items-center" data-controller="squad-members-button">
           <h1 class="sq-title"><%= @squad.title %></h2>
           <h3 class="sq-desc"> <%= @squad.description %></h2>
           <div class="d-flex align-items-center"><button class="sq-mem" data-squad-members-button-target="button" data-action="click->squad-members-button#open">Members</button></div>
           <br><br>
-          <h6 class="sq-date">Created at: </h2>
+          <h6 class="sq-date">Created at: <%= (@squad.created_at).strftime("%m/%d/%Y") %></h6>
           <div data-squad-members-button-target="members" class="members-hide">
             <div class="container">
               <% @squad.users.each do |u| %>
-                <div class="d-flex">
-                  <%= cl_image_tag u.photo.key, class: "squad-avatar" %>
-                  <p><%= u.username %></p>
+                <div class="my-2 d-flex justify-content-center align-items-center">
+                  <%= cl_image_tag u.photo.key, class: "mem" %>
+
+                  <p class="d-flex mx-3 align-self-center"><%= u.username %></p>
 
                 </div>
               <% end  %>
@@ -60,7 +61,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-6">
-        <div class="chatroom my-5" data-controller="chatroom-subscription"
+        <div class="chatroom my-4" data-controller="chatroom-subscription"
           data-chatroom-subscription-chatroom-id-value="<%= @squad.chatroom.id %>">
           <h1 class="sq-title">Squad Chat</h1>
           <div class="messages" data-chatroom-subscription-target="messages">

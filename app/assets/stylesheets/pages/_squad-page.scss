@@ -97,9 +97,11 @@
   transform: translateX(-16px);
   transition: transform 0.5s ease;
 
+
 }
 .untrack_button:hover{
   transform: translateX(0px);
+
 }
 
 
@@ -137,18 +139,18 @@
 }
 .members-show{
   background-color: white;
-
   top:30%;
   z-index: 20;
-  transform: translateX(50%);
+  transform: translateX(75%);
+  margin: auto;
   visibility: visible;
   position: fixed;
   display: flex;
   flex-direction: column;
-  padding: 35px;
+  padding: 35px 0px 35px 0px;
   height: fit-content;
-  width: 50%;
-  border: solid black 3px;
+  width: 30%;
+  border: solid black 1px;
   border-radius: 6px;
 }
 .sq-close{
@@ -157,4 +159,10 @@
 
   border: none;
   color: #0f303a;
+}
+
+.mem{
+  width: 8%;
+  object-fit: fill;
+  border-radius: 50%;
 }
