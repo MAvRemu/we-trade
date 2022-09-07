@@ -17,7 +17,7 @@
             <% upvotes = @post.post_votes.sum {|vote| vote.upvote } %> <h1 class="ms-2 me-2 <%= upvotes > 0 ? "font-color-green" : "font-color-red" %>"><%= upvotes > 0 ? "+" : "" %><%= upvotes %></h1>
             <%= button_to "Downvote",  post_post_votes_path(@post), class: "p-2 me-auto bcg-secondary rounded-3 filter-box", params: {upvote: -1}%>
 
-            <a href="#link-to-comment" class="ms-auto p-2 me-2 bcg-main rounded-3 filter-box no-decoration">Reply</a>
+            <a href="#link-to-comment" class="ms-auto p-2 me-2 bcg-main rounded-3 filter-box no-decoration">Comment</a>
 
             <% if @post_bookmark_present %>
               <%= button_to "Unfavorite", post_bookmark_path(@post_bookmark), method: :delete, form_class: "", class: "p-2  bcg-main rounded-3 filter-box"%>

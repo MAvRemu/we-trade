@@ -19,7 +19,13 @@ class CryptosController < ApplicationController
     authorize @crypto
     @comment = CryptoComment.new
     @comment_nested = CryptoNestedComment.new
+    @crypto_rating = CryptoRating.find_by(user: current_user, crypto: @crypto)
+    unless @crypto_rating.present?
+      @crypto_rating = CryptoRating.new
+    end
+
     @rating = @crypto.crypto_ratings.sum(:rating).to_f / @crypto.crypto_ratings.size
+    @rating = 0 if @rating.nan?
     @crypto_bookmark_present = CryptoBookmark.exists?(user: current_user, crypto: @crypto)
     if @crypto_bookmark_present
       @crypto_bookmark = CryptoBookmark.find_by(user: current_user, crypto: @crypto)
@@ -31,6 +37,9 @@ class CryptosController < ApplicationController
   def mycryptos
     @mycryptos = current_user.cryptos
     authorize @mycryptos
+    if params[:query].present?
+      @mycryptos = @mycryptos.search_by_name_and_ticker(params[:query])
+    end
     @mycryptos = filter_cryptos(@mycryptos)
   end
 
