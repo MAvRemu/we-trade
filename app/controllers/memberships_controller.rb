@@ -8,8 +8,21 @@ class MembershipsController < ApplicationController
   end
   def destroy
     @membership = Membership.find(params[:id])
-    authorize @membership
-    @membership.destroy
+    @squad = @membership.squad
+    if @squad.users.count == 1
+      authorize @membership
+      @membership.destroy
+      authorize @squad
+      @squad.destroy
+    elsif @squad.user == current_user
+      authorize @membership
+      @membership.destroy
+      @squad.update(user: @squad.users.first)
+    else
+      authorize @membership
+      @membership.destroy
+    end
+
     redirect_to squads_path, status: :see_other
   end
 
