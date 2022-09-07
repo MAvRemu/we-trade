@@ -107,13 +107,20 @@
   opacity: 0.4;
 }
 
-.home-logo{
+.home-logo-sm{
   display: block;
   margin-top: 3px;
   margin-left: auto;
   margin-right: auto;
   width: 8%;
+}
 
+.home-logo-m{
+  display: block;
+  margin-top: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 12%;
 }
 
 .home-title{
@@ -124,6 +131,6 @@
 
 .center {
   margin: auto;
-  width: 23%;
+  width: 100vw;
   padding: 10px;
 }
