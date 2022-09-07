@@ -1,7 +1,7 @@
 // Specific CSS for your home-page
 .auth-button{
   text-decoration: none;
-  background-color:  rgb(160, 178, 166);
+  background-color:  $main;
   color: rgb(233, 233, 233) ;
   width: 250px;
   padding-top: 8px;
@@ -15,7 +15,7 @@
 
 }
 .auth-button:hover{
-  background-color: rgb(97, 152, 142);
+  background-color: $second;
   color: white;
 }
 .auth-buttons{

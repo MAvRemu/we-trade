@@ -14,7 +14,7 @@ class UpdateCryptosJob < ApplicationJob
     i = 1
     fresh_cryptos = []
 
-    3.times do
+    11.times do
       fresh_cryptos += read_url("#{url}&page=#{i}")
       i += 1
     end

@@ -49,10 +49,15 @@
 
 
 <div class="row justify-content-center", id="link-to-comment">
-  <div class="col-9 p-3 rounded-4">
+  <div class="col-9 p-0 rounded-4 log">
+  <h4 class="pt-3 ps-3" style="color: #625F5A;">Your Comment</h4>
     <%= simple_form_for [element, comment], html: { class: "p-3 rounded-4 bg-white"}  do  |c| %>
-    <%= c.rich_text_area :content_trix, id: element.id, placeholder: 'your comment....', label: 'Comment' %>
-    <%= c.submit 'Create' %>
+    <div class="form-inputs">
+      <%= c.rich_text_area :content_trix, id: element.id, placeholder: 'your comment....', label: 'Comment' %>
+    </div>
+    <div class="form-actions pt-3">
+      <%= c.submit 'Comment' %>
+    </div>
     <% end %>
   </div>
 </div>

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :crypto_nested_comments, only: [:create]
     end
 
+    resources :crypto_ratings, only: [:create, :update]
     resources :crypto_bookmarks, only: [:create, :update]
   end
   resources :crypto_bookmarks, only: [:destroy]
