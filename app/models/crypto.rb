@@ -33,8 +33,10 @@ class Crypto < ApplicationRecord
       output = "#{(self.price).round(2)}"
     elsif self.price > 1
       output = "#{(self.price).round(3)}"
-    else
+    elsif self.price > 0.0001
       output = "#{(self.price).round(4)}"
+    else
+      output = "<0.0001"
     end
     output
   end

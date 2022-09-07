@@ -1,13 +1,21 @@
-<div class="container my-5 log col-lg-6">
+<div class="container">
 
+<div class="container col-lg-8 p-0 pt-5">
+  <h1 class="mt-4 mb-3" style="color: #625F5A;">Your New Post</h1>
+</div>
+
+<div class="container col-lg-8 p-0 pt-3">
+  <div id="block-top-colored" style="margin: 0px;"></div>
+  </div>
+<div class="container col-lg-8 pt-3 pb-3 form-box">
   <%= simple_form_for(@post) do |f| %>
-    <div class="form-inputs">
+    <div class="form-inputs mt-3">
     <%= f.input :title, as: :string %>
-    <%= f.input :content_trix, as: :rich_text_area %>
+    <%= f.input :content_trix, as: :rich_text_area, class: "customized-min-height"  %>
     </div>
 
     <div class="form-actions">
       <%= f.submit %>
     </div>
   <% end %>
-</div>
+</div></div>

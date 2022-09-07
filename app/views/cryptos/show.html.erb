@@ -8,7 +8,7 @@
             <%= image_tag @crypto.image_url, class: "crypto-logo-show me-3" %>
             <div>
               <div class="d-flex align-items-center">
-                <h4 class="m-0"><%= @crypto.name %></h4>
+                <h4 class="" style="margin: 0 0 0 25px;"><%= @crypto.name %></h4>
                 <h5> <%= @crypto.ticker.upcase %></h5>
                 <%= render 'ratings', rating: @rating %>
                 <h3>  <%= @rating.round(1) %></h3>
@@ -17,7 +17,7 @@
                 <%= image_tag "rank.png" %>
                 <h3>#<%= @crypto.rank %></h3>
                 <%= image_tag "dollar.png" %>
-                <h3 class="me-2"><%= @crypto.price.round(0) %></h3>
+                <h3 class="me-2"><%= @crypto.price_short %></h3>
                 <%= image_tag "votes.png" %>
                 <h3><%= @crypto.crypto_ratings.count %></h3>
                 <%= image_tag "comments.png" %>
@@ -27,8 +27,16 @@
               </div>
             </div>
           </div>
-          <div class="d-flex">
-            <a href="#link-to-comment" class="ms-auto p-2 me-2 bcg-main rounded-3 filter-box no-decoration">Reply</a>
+          <div class="d-flex mt-5">
+            <%= simple_form_for [@crypto, @crypto_rating], html: {class: "d-flex mt-0"} do |f| %>
+            <%= f.input :rating, as: :select, label: false, collection: [1, 2, 3, 4, 5], input_html: { class: 'testing' } %>
+            <div class="form-actions">
+            <%= f.submit 'rate' %>
+          </div>
+          <% end %>
+
+
+            <a href="#link-to-comment" class="ms-auto p-2 me-2 bcg-main rounded-3 filter-box no-decoration">Comment</a>
 
             <% if @crypto_bookmark_present %>
               <%= button_to "Unfavorite", crypto_bookmark_path(@crypto_bookmark), method: :delete, form_class: "", class: "p-2  bcg-main rounded-3 filter-box"%>

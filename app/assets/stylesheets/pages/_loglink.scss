@@ -5,9 +5,28 @@
 
 }
 .log{
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   padding: 32px;
-  border-radius: 10px ;
-  background-color: rgb(160, 178, 166);
-  border: solid 2px rgb(73, 56, 67)
+  border-radius: 3px ;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
+
+}
+
+
+.form-actions {
+
+
+  input {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
+    border: 0;
+    background-color: $second;
+    color: black !important;
+    padding: 5px;
+  }
+}
+
+.form-box{
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
 }

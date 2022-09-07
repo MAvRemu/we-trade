@@ -82,8 +82,8 @@ PostVote.destroy_all
 CryptoBookmark.destroy_all
 PostBookmark.destroy_all
 Post.destroy_all
-Watchlist.destroy_all
 Watching.destroy_all
+Watchlist.destroy_all
 Membership.destroy_all
 Squad.destroy_all
 User.destroy_all

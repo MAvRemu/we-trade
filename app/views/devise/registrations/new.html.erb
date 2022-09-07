@@ -1,7 +1,14 @@
-<div class="container my-5 log col-lg-4">
-  <h2>Sign up</h2>
+<div class="container pt-3">
 
 
+<div class="container col-sm-5 p-0 pt-5">
+  <h1 class="mt-4 mb-3" style="color: #625F5A;">Register</h1>
+</div>
+
+<div class="container col-sm-5 p-0 pt-3">
+  <div id="block-top-colored" style="margin: 0px;"></div>
+  </div>
+<div class="container log col-sm-5">
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
     <%= f.error_notification %>
 

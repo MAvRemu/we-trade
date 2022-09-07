@@ -51,7 +51,7 @@ class PostsController < ApplicationController
     authorize @post
     @post.user = current_user
     if @post.save!
-      redirect_to posts_path
+      redirect_to posts_path(filter: "new")
     else
       render :new, status: :unprocessable_entity
     end
