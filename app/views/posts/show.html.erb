@@ -22,7 +22,7 @@
             <% if @post_bookmark_present %>
               <%= button_to "Unfavorite", post_bookmark_path(@post_bookmark), method: :delete, form_class: "", class: "p-2  bcg-main rounded-3 filter-box"%>
             <% else %>
-              <%= button_to "Favorite", post_post_bookmarks_path(@post), form_class: "", class: "p-2  bcg-main rounded-3 filter-box"%>
+              <%= button_to "Favorite", post_post_bookmarks_path(@post), form_class: "", class: "p-2  bcg-main h-100 rounded-3 filter-box"%>
             <% end %>
           </div>
         </div>
