@@ -36,7 +36,7 @@
           <%= image_tag "comments.png" %>
           <h6><%=  p.post_comments.count  %></h6>
           <%= image_tag "group.png" %>
-          <h6><%= p.post_comments.map {|c| c.user}.uniq.count  %></h6>
+          <h6><%= p.post_comments.map {|c| c.user}.uniq.count%></h6>
         </div>
         <div class="mt-2">
         <%= link_to p.title, post_path(p), class: "post-title" %>
