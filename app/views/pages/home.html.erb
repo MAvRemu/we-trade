@@ -18,12 +18,19 @@
   </div>
 
 <% else %>
-  <div class="home_entry">
-    <div classs="hello-message"><h1 id="day-begin"> Happy <%="#{Date.today.strftime("%A")}, #{current_user.username}!"%> </h1>
-      <div id="home-img">
-        <%= image_tag('Crypto10.svg') %>
-      </div>
+  <div class="">
+    <div class="" style="height:84vh;">
+    <h1 class="home-title">Welcome to WeTrade</h1>
+    <%= image_tag "logo.png", class:"home-logo" %>
+
+
+    <h2 class="home-title">Members:</h2>
+    <div class="center">
+      <% User.all.last(5).each do |u| %>
+      <%= cl_image_tag u.photo.key, class: "avatar-large dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% end %>
     </div>
+    <h3 class="home-title"> Happy Trading <%="#{Date.today.strftime("%A")}, #{current_user.username}!"%> </h3>
   </div>
   <div class="news">
     <div class="newsWidget" >
