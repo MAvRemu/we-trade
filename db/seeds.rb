@@ -94,16 +94,25 @@ marius = User.new(email: "marius@hotmail.com", username: "Marius", password: "ma
 mantas = User.new(email: "mantas@hotmail.com", username: "Mantas", password: "mantas", admin: true)
 tan = User.new(email: "tan@hotmail.com", username: "Tan", password: "tantan", admin: true)
 tom = User.new(email: "tom@hotmail.com", username: "TOM", password: "tomtom", admin: true)
+clay = User.new(email: "clay@hotmail.com", username: "clay", password: "tomtom", admin: false)
+alice = User.new(email: "alice@hotmail.com", username: "alice", password: "tomtom", admin: false)
+siona = User.new(email: "siona@hotmail.com", username: "siona", password: "tomtom", admin: false)
 
 marius.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1661782386/hjqrltjashi2omdr2wbw.jpg"), filename: "marius.jpg", content_type: "image/jpg")
 tan.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1661783149/hq4mhosbe1gjr0y4yunz.jpg"), filename: "tan.jpg", content_type: "image/jpg")
 mantas.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1661783176/il31crrwnmf4sdvqukwo.png"), filename: "mantas.png", content_type: "image/png")
 tom.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1662040477/s1raxphptwbmb4vbfzpb.jpg"), filename: "tom.jpg", content_type: "image/jpg")
+clay.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1662565780/unzrpbaen3zmc8orhgub.jpg"), filename: "clay.jpg", content_type: "image/jpg")
+alice.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1662565965/c1ke6zpwsepsvsyunmyt.jpg"), filename: "alice.jpg", content_type: "image/jpg")
+siona.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1662566040/i1wp6nux2imudgy8p1ux.jpg"), filename: "siona.jpg", content_type: "image/jpg")
 
-users_array = [marius, tan, mantas, tom]
+users_array = [marius, tan, mantas, tom, clay, siona]
 marius.save!
 tan.save!
 mantas.save!
+clay.save!
+alice.save!
+siona.save!
 puts "created users"
 
 generate_posts(users_array)
