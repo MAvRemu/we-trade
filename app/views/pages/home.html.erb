@@ -2,8 +2,9 @@
   <%= video_tag "home.mov", autoplay: :autoplay, loop: :loop, muted: :muted, id: "banner_video"  %>
     <div class="banner-container">
       <div class="wetrade-banner">
+        <%= image_tag "logo.png", class:"home-logo-m pb-2" %>
         <h1 class="center-h1" style="font-size: 65px;">WeTrade</h1>
-        <h5>A tool for crypto communities to collaborate and contribute effectively</h5>
+        <h5 class="mb-5 pb-5" style="font-size: 20px;">A tool for crypto communities to collaborate and contribute effectively</h5>
       </div>
 
       <div class="auth-buttons d-flex flex-column">
@@ -21,13 +22,13 @@
   <div class="">
     <div class="" style="height:84vh;">
     <h1 class="home-title">Welcome to WeTrade</h1>
-    <%= image_tag "logo.png", class:"home-logo" %>
+    <%= image_tag "logo.png", class:"home-logo-sm" %>
 
 
     <h2 class="home-title">Members:</h2>
-    <div class="center">
+    <div class="d-flex justify-content-center">
       <% User.all.last(5).each do |u| %>
-      <%= cl_image_tag u.photo.key, class: "avatar-large dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <%= cl_image_tag u.photo.key, class: "avatar-large m-1" %>
       <% end %>
     </div>
     <h3 class="home-title"> Happy Trading <%="#{Date.today.strftime("%A")}, #{current_user.username}!"%> </h3>

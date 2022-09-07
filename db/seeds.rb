@@ -136,15 +136,17 @@ puts "creating squads"
 c_t = Chatroom.create
 c_m = Chatroom.create
 
-t = Squad.create(title: "Ssup hoe", description: "BTC 100,000", user: tan, chatroom: c_t)
+t = Squad.create(title: "Next DeFi Season, let's prepare", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", user: tan, chatroom: c_t)
 puts "yas"
-m = Squad.create(title: "E-money", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-", user: mantas, chatroom: c_m)
+m = Squad.create(title: "The Metaverse, let's find a top 10!", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", user: mantas, chatroom: c_m)
+marius = Squad.create(title: "Microcap Research Group", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", user: mantas, chatroom: c_m)
 
 w1 = Watchlist.create(squad: t);
 w2 = Watchlist.create(squad: m);
+w3 = Watchlist.create(squad: marius);
 t.update(watchlist: w1)
 m.update(watchlist: w2)
+marius.update(watchlist: w3)
 
 Watching.create(watchlist: t.watchlist, crypto_id: 2)
 Watching.create(watchlist: t.watchlist, crypto_id: 6)
@@ -158,6 +160,12 @@ Watching.create(watchlist: m.watchlist, crypto_id: 4)
 Watching.create(watchlist: m.watchlist, crypto_id: 2)
 Watching.create(watchlist: m.watchlist, crypto_id: 1)
 Watching.create(watchlist: m.watchlist, crypto_id: 9)
+
+Watching.create(watchlist: marius.watchlist, crypto_id: 6)
+Watching.create(watchlist: marius.watchlist, crypto_id: 4)
+Watching.create(watchlist: marius.watchlist, crypto_id: 2)
+Watching.create(watchlist: marius.watchlist, crypto_id: 1)
+Watching.create(watchlist: marius.watchlist, crypto_id: 9)
 
 puts "populating squads"
 
