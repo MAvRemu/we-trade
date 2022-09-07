@@ -46,15 +46,18 @@
           <br><br>
           <h6 class="sq-date">Created at: <%= (@squad.created_at).strftime("%m/%d/%Y") %></h6>
           <div data-squad-members-button-target="members" class="members-hide">
-            <div class="container">
+            <div class="container d-flex flex-column justify-content-center align-items-center align-content-center">
+              <div class="align-self-center">
               <% @squad.users.each do |u| %>
-                <div class="my-2 d-flex justify-content-center align-items-center">
-                  <%= cl_image_tag u.photo.key, class: "mem" %>
-
-                  <p class="d-flex mx-3 align-self-center"><%= u.username %></p>
+                <div class="my-2 d-flex align-items-center flex-grow">
+                  <div class="d-flex">
+                    <%= cl_image_tag u.photo.key, class: "mem" %>
+                    <p class="mx-2 my-0"><%= u.username %></p>
+                  </div>
 
                 </div>
               <% end  %>
+              </div>
             </div>
             <button class="sq-close" data-squad-members-button-target="close" data-action="click->squad-members-button#close">close</button>
           </div>
