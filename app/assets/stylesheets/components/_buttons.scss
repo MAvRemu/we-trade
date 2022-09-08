@@ -1,10 +1,17 @@
 .bcg-secondary {
   background-color: #ffa544;
   color: black !important;
+  transition: color 0.3s ease;
 
   a {
-  color: black;
+    color: black;
   }
+}
+
+.bcg-secondary:hover {
+  background-color: $main;
+  transition: color 0.3s ease;
+
 }
 
 .bcg-main {

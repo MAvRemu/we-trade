@@ -15,9 +15,9 @@ class Crypto < ApplicationRecord
   def mcap_short
     output = 0
     if self.market_cap > 1000000000
-      output = "#{(self.market_cap/1000000000).round(0)}bln"
+      output = "#{(self.market_cap/1000000000).round(0)}Bn"
     elsif self.market_cap > 1000000
-      output = "#{(self.market_cap/1000000).round(0)}mln"
+      output = "#{(self.market_cap/1000000).round(0)}MM"
     else
       output = "#{(self.market_cap/1000).round(0)}k"
     end
