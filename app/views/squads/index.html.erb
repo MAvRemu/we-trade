@@ -12,7 +12,12 @@
     <h1>Squads</h1>
   </div>
   <div div class="my-3">
-    <h2 class="eggplant-text">My Squads</h2>
+    <div class="d-flex">
+      <h2 class="eggplant-text">My Squads</h2>
+      <%= link_to new_squad_path, style:"text-decoration:none", class:"ms-auto" do  %>
+        <div class="joinbutton createsquad m-0 bcg-secondary"> create squad </div>
+      <% end  %>
+    </div>
       <div class="squad-card container">
         <div class="row">
           <% (current_user.squads).each do |s| %>
@@ -47,11 +52,6 @@
 
   <div div class="my-3">
     <div class="d-flex justify-content-between"><h2 class="eggplant-text squad-category">Open Squads</h2>
-    <div>
-        <%= link_to new_squad_path, style:"text-decoration:none" do  %>
-          <div class="joinbutton createsquad"> create squad </div>
-        <% end  %>
-    </div>
     </div>
     <div class="squad-card container">
       <div class="row">

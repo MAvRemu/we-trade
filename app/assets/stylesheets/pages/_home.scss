@@ -12,8 +12,16 @@
   transition: background-color 0.5s ease;
   transform: color 0.5s ease;
 
-
 }
+
+#link {
+  color: white !important;
+}
+
+#link:hover {
+  color: $second !important;
+}
+
 .auth-button:hover{
   background-color: $second;
   color: white;
