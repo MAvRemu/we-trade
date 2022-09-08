@@ -107,20 +107,22 @@
 
 
 .sq-title{
-  color:#0f303a;
+  color:#133b47;
   margin-bottom: 20px;
 }
 .sq-desc{
   color: #486C77;
+  font-weight: 300;
   margin-bottom: 20px;
 }
 
 .sq-mem{
-  background-color: #0f303a;
-  color: #486C77;
+  background-color: $second;
+  color: black;
   padding: 8px 16px 8px 16px;
   border-radius: 50px;
   align-self: center;
+  border: none;
 
 }
 .sq-mem > h5{
