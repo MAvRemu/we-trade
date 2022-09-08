@@ -15,13 +15,13 @@
 
 .form-actions {
 
-
   input {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
     border: 0;
     background-color: #ffa544;
     color: black !important;
     padding: 5px;
+    height: 100%;
   }
 }
 
@@ -29,4 +29,8 @@
   background-color: white;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
+}
+
+#crypto_rating_rating {
+  height: 100%;
 }
