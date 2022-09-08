@@ -12,16 +12,16 @@
       <ul class="navbar-nav me-auto align-items-center">
         <% if user_signed_in? %>
           <li class="nav-itm  active">
-            <%= link_to "Home", "/", class: "nav-lnk" , id: "lnk" %>
+            <%= link_to "Home", "/", class: "nav-lnk" , id: "link" %>
           </li>
           <li class="nav-itm">
-            <%= link_to "Squads", squads_path, class: "nav-lnk", id: "lnk"%>
+            <%= link_to "Squads", squads_path, class: "nav-lnk", id: "link"%>
           </li>
           <li class="nav-itm">
-            <%= link_to "Cryptos", cryptos_path(filter: "hot"), class: "nav-lnk" , id: "lnk"%>
+            <%= link_to "Cryptos", cryptos_path(filter: "hot"), class: "nav-lnk" , id: "link"%>
           </li>
           <li class="nav-itm">
-            <%= link_to "Posts", posts_path(filter: "hot"), class: "nav-lnk", id: "lnk"%>
+            <%= link_to "Posts", posts_path(filter: "hot"), class: "nav-lnk", id: "link"%>
           </li>
           <li class="nav-itm dropdown">
             <%= cl_image_tag current_user.photo.key, class: "avatar-large dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
