@@ -1,7 +1,8 @@
 class MembershipsController < ApplicationController
 
   def create
-    @mem = Membership.new(user: current_user, squad: Squad.find(params[:squad_id]))
+    @squad  = Squad.find(params[:squad_id])
+    @mem = Membership.new(user: current_user, squad: @squad)
     authorize @mem
     @mem.save
     redirect_to squads_path
@@ -9,6 +10,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = Membership.find(params[:id])
     @squad = @membership.squad
+    #raise
     if @squad.users.count == 1
       authorize @membership
       @membership.destroy
@@ -22,7 +24,6 @@ class MembershipsController < ApplicationController
       authorize @membership
       @membership.destroy
     end
-
     redirect_to squads_path, status: :see_other
   end
 

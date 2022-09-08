@@ -258,3 +258,7 @@ Membership.create!(squad: t, user: mantas)
 Membership.create!(squad: m, user: mantas)
 
 post = PostComment.create!(user: users_array[3], post: Post.find_by(title: "DeFi - Building the future of Decentralised Finance"), content_trix: 'You reports are the best, I am gonna upvote this one immediately')
+Membership.create!(squad: squad, user: mantas)
+Membership.create!(squad: squad2, user: mantas)
+Membership.create!(squad: squad3, user: mantas)
+Membership.create!(squad: mar, user: mantas)

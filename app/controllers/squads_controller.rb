@@ -35,7 +35,6 @@ class SquadsController < ApplicationController
   end
 
   def destroy
-
   end
 
   def join
