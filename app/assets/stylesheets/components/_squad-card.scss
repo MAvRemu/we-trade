@@ -43,7 +43,8 @@
 
 .joinbutton{
   width: 100%;
-  background-color: #486C77;
+  background-color: #486c77;
+  opacity: 1;
   color: white;
   border: 0px;
   margin-top: 16px;
@@ -51,6 +52,7 @@
   border-radius: 2px;
   text-decoration: none;
   text-align: center;
+  z-index: 1;
 }
 
 .joinbutton:hover{
