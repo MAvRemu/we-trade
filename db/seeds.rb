@@ -97,6 +97,7 @@ tom = User.new(email: "tom@hotmail.com", username: "TOM", password: "tomtom", ad
 clay = User.new(email: "clay@hotmail.com", username: "clay", password: "tomtom", admin: false)
 alice = User.new(email: "alice@hotmail.com", username: "alice", password: "tomtom", admin: false)
 siona = User.new(email: "siona@hotmail.com", username: "siona", password: "tomtom", admin: false)
+tom2 = User.new(email: "tom3@hotmail.com", username: "tom2", password: "tomtom", admin: false)
 
 marius.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1661782386/hjqrltjashi2omdr2wbw.jpg"), filename: "marius.jpg", content_type: "image/jpg")
 tan.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1661783149/hq4mhosbe1gjr0y4yunz.jpg"), filename: "tan.jpg", content_type: "image/jpg")
@@ -105,14 +106,16 @@ tom.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/
 clay.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1662565780/unzrpbaen3zmc8orhgub.jpg"), filename: "clay.jpg", content_type: "image/jpg")
 alice.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1662565965/c1ke6zpwsepsvsyunmyt.jpg"), filename: "alice.jpg", content_type: "image/jpg")
 siona.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1662566040/i1wp6nux2imudgy8p1ux.jpg"), filename: "siona.jpg", content_type: "image/jpg")
+tom2.photo.attach(io: URI.open("http://res.cloudinary.com/dqiadt7pm/image/upload/v1662566566/g3r9pgsy9fqfv2izfg8u.jpg"), filename: "tom2.jpg", content_type: "image/jpg")
 
-users_array = [marius, tan, mantas, tom, clay, siona]
+users_array = [marius, tan, mantas, tom, clay, siona, tom2]
 marius.save!
 tan.save!
 mantas.save!
 clay.save!
 alice.save!
 siona.save!
+tom2.save!
 puts "created users"
 
 generate_posts(users_array)
