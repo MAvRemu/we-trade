@@ -27,7 +27,7 @@
 
     <h2 class="home-title">Members:</h2>
     <div class="d-flex justify-content-center">
-      <% User.all.last(30).each do |u| %>
+      <% User.all.each do |u| %>
       <%= cl_image_tag u.photo.key, class: "avatar-large m-1" %>
       <% end %>
     </div>
