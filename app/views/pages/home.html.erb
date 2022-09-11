@@ -28,7 +28,11 @@
     <h2 class="home-title">Members:</h2>
     <div class="d-flex justify-content-center">
       <% User.all.each do |u| %>
-      <%= cl_image_tag u.photo.key, class: "avatar-large m-1" %>
+      <% if u.photo.key.present? %>
+        <%= cl_image_tag u.photo.key, class: "avatar-large m-1" %>
+      <% else %>
+        <%= image_tag "avatar.png", class: "avatar-large m-1 dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
       <% end %>
     </div>
     <h3 class="home-title"> Happy Trading <%="#{Date.today.strftime("%A")}, #{current_user.username}!"%> </h3>
