@@ -20,25 +20,21 @@
     </div>
       <div class="squad-card container">
         <div class="row">
-          <% (current_user.squads).each do |s| %>
+          <% current_user.squads.each do |s| %>
             <div class="d-flex flex-column squad-card-container justify-content-start">
               <%= link_to squad_path(s), class: "squad-card-typing col-sm-6", style: "color: $eggplant; word-wrap: normal;" do %>
                 <div class="mx-2">
                     <h5 class="eggplant-text"><%= s.title %></h5>
                     <div style="width: 100%; height: 3em;" class="d-flex justify-content-around align-items-center">
-                      <%= cl_image_tag s.user.photo.key, class: "squad-avatar" %>
-                      <% (0...6).each do |u| %>
-                        <% if s.users[u] %>
-                          <% if s.users[u] != s.user  %>
-                            <% if u != 5  %>
-                              <%= cl_image_tag s.users[u].photo.key, class: "squad-avatar" %>
-                            <% else  %>
-                              <%= cl_image_tag s.users[u].photo.key, class: "squad-avatar" %>
-                            <% end  %>
-                          <% end %>
-                        <% else  %>
-                          <%= image_tag("blank-profile-picture-973460_960_720.png", class: "squad-avatar") %>
-                        <% end  %>
+                      <% s.users.first(6).each do |u| %>
+                        <% if u.photo.key.present? %>
+                          <%= cl_image_tag u.photo.key, class: "squad-avatar" %>
+                        <% else %>
+                          <%= image_tag "avatar.png", class: "squad-avatar" %>
+                        <% end %>
+                      <% end %>
+                      <% (6 - s.users.count).times do |u|  %>
+                        <%= image_tag("blank-profile-picture-973460_960_720.png", class: "squad-avatar") %>
                       <% end %>
                     </div>
                   </div>
@@ -63,19 +59,15 @@
                   <div class="mx-2">
                     <h5 class="eggplant-text"><%= s.title %></h5>
                     <div style="width: 100%; height: 3em;" class="d-flex justify-content-around align-items-center">
-                      <%= cl_image_tag s.user.photo.key, class: "squad-avatar" %>
-                      <% (0...6).each do |u| %>
-                        <% if s.users[u] %>
-                          <% if s.users[u] != s.user  %>
-                            <% if u != 5  %>
-                              <%= cl_image_tag s.users[u].photo.key, class: "squad-avatar" %>
-                            <% else  %>
-                              <%= cl_image_tag s.users[u].photo.key, class: "squad-avatar" %>
-                            <% end  %>
-                          <% end %>
-                        <% else  %>
-                          <%= image_tag("blank-profile-picture-973460_960_720.png", class: "squad-avatar") %>
-                        <% end  %>
+                      <% s.users.first(6).each do |u| %>
+                        <% if u.photo.key.present? %>
+                          <%= cl_image_tag u.photo.key, class: "squad-avatar" %>
+                        <% else %>
+                          <%= image_tag "avatar.png", class: "squad-avatar" %>
+                        <% end %>
+                      <% end %>
+                      <% (6 - s.users.count).times do |u|  %>
+                        <%= image_tag("blank-profile-picture-973460_960_720.png", class: "squad-avatar") %>
                       <% end %>
                     </div>
                   </div>

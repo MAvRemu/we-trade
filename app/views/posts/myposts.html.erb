@@ -7,19 +7,19 @@
   <div class="d-flex col-7 filters align-items-center mb-4 mt-4" >
     <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "new" ? "bcg-secondary" : "" %>">
       <%= image_tag "new.png" %>
-      <%= link_to "New",  posts_path(filter: "new")%>
+      <%= link_to "New",  myposts_path(filter: "new")%>
     </div>
     <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "hot" ? "bcg-secondary" : "" %>">
       <%= image_tag "hot.png" %>
-      <%= link_to "Hot",  posts_path(filter: "hot")%>
+      <%= link_to "Hot",  myposts_path(filter: "hot")%>
     </div>
     <div class="p-2 rounded-3 filter-box me-3 <%= params[:filter] == "votes" ? "bcg-secondary" : "" %>">
       <%= image_tag "votes.png" %>
-      <%= link_to "Upvotes",  posts_path(filter: "votes")%>
+      <%= link_to "Upvotes",  myposts_path(filter: "votes")%>
     </div>
     <div class="p-2 rounded-3 me-auto filter-box <%= params[:filter] == "comments" ? "bcg-secondary" : "" %>">
       <%= image_tag "comments.png" %>
-      <%= link_to "Comments",  posts_path(filter: "comments")%>
+      <%= link_to "Comments",  myposts_path(filter: "comments")%>
     </div>
   </div>
 </div>
@@ -29,7 +29,11 @@
   <div class="d-flex post-card col-7">
     <div id="block-left-colored"></div>
     <div class="p-3 d-flex width-100">
-      <%= cl_image_tag p.user.photo.key, class: "avatar-xl me-3" %>
+      <% if p.user.photo.key.present? %>
+        <%= cl_image_tag p.user.photo.key, class: "avatar-large m-1" %>
+      <% else %>
+        <%= image_tag "avatar.png", class: "avatar-large m-1 dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% end %>
       <div style="width:100%">
         <div class="d-flex align-items-center post-details">
           <h4 class="m-0 me-3"><%= p.user.username %></h4>

@@ -5,7 +5,11 @@
         <div class="d-flex comment rounded-3">
           <div id="block-left-colored"></div>
           <div class="d-flex p-3 width-100">
-            <%= cl_image_tag c.user.photo.key, class: "avatar-large me-4" %>
+            <% if c.user.photo.key.present? %>
+              <%= cl_image_tag c.user.photo.key, class: "avatar-large me-4" %>
+            <% else %>
+              <%= image_tag "avatar.png", class: "avatar-large me-4" %>
+            <% end %>
             <div class="me-auto">
               <div class="d-flex align-items-center">
                 <h4 class="m-0 me-2"><%= c.user.username %></h4>
@@ -22,7 +26,11 @@
             <div class="d-flex col-11 p-0 rounded-3 m-1">
             <div id="block-left-colored"></div>
             <div class="d-flex ps-2 pt-2 pe-2 width-100 comment-sm ">
-              <%= cl_image_tag cn.user.photo.key, class: "avatar me-2" %>
+              <% if cn.user.photo.key.present? %>
+                <%= cl_image_tag cn.user.photo.key, class: "avatar me-2" %>
+              <% else %>
+                <%= image_tag "avatar.png", class: "avatar me-2" %>
+              <% end %>
               <div class="">
                 <div class="d-flex">
                   <h4 class="m-0 me-2"><%= cn.user.username %></h4>
