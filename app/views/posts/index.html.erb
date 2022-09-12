@@ -25,7 +25,11 @@
   <div class="d-flex post-card col-7">
     <div id="block-left-colored"></div>
     <div class="p-3 d-flex width-100">
-      <%= cl_image_tag p.user.photo.key, class: "avatar-xl me-3" %>
+      <% if p.user.photo.key.present? %>
+        <%= cl_image_tag p.user.photo.key, class: "avatar-large m-1" %>
+      <% else %>
+        <%= image_tag "avatar.png", class: "avatar-large m-1 dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% end %>
       <div style="width:100%">
         <div class="d-flex align-items-center post-details">
           <h4 class="m-0 me-3"><%= p.user.username %></h4>

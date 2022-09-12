@@ -2,10 +2,11 @@ class CryptoBookmarksController < ApplicationController
 
   def create
     @crypto = Crypto.find(params[:crypto_id])
-    authorize @crypto
+    # authorize @crypto
     @crypto_bookmark = CryptoBookmark.new
     @crypto_bookmark.user = current_user
     @crypto_bookmark.crypto = @crypto
+    authorize @crypto_bookmark
     if @crypto_bookmark.save!
       redirect_to crypto_path(@crypto)
     else

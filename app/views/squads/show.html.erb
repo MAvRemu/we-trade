@@ -51,7 +51,11 @@
               <% @squad.users.each do |u| %>
                 <div class="my-2 d-flex align-items-center flex-grow">
                   <div class="d-flex">
-                    <%= cl_image_tag u.photo.key, class: "mem" %>
+                    <% if u.photo.key.present? %>
+                      <%= cl_image_tag u.photo.key, class: "mem" %>
+                    <% else %>
+                      <%= image_tag "avatar.png", class: "mem" %>
+                    <% end %>
                     <p class="mx-2 my-0"><%= u.username %></p>
                   </div>
 

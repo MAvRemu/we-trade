@@ -6,7 +6,11 @@
         <div class="p-3">
           <h1 class="m-3"><%=  @post.title%></h1>
           <div class="d-flex align-items-center mb-3 ms-3 me-2">
-            <%= cl_image_tag @post.user.photo.key, class: "avatar-xl" %>
+            <% if @post.user.photo.key.present? %>
+              <%= cl_image_tag @post.user.photo.key, class: "avatar-large m-1" %>
+            <% else %>
+              <%= image_tag "avatar.png", class: "avatar-large m-1 dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% end %>
             <h4 class=""><%= @post.user.username %></h4>
             <h5><%= time_ago_in_words(@post.created_at.to_datetime,  scope: 'datetime.distance_in_words.abbrv', include_seconds: true) %> ago</h5>
           </div>
