@@ -39,4 +39,8 @@ Rails.application.routes.draw do
   resources :watchings, only: [:destroy]
   resources :memberships, only:[:destroy]
 
+  mount SiweRails::Engine => '/siwe'
+
+  get '/auth/siwe/callback', to: 'siwe_controller#siwe_callback'
+
 end

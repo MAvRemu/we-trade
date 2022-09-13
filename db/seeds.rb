@@ -19,7 +19,7 @@ def generate_crypto_comments(cryptos, array)
       crypto = CryptoComment.create!(user: array[2], crypto: c, content_trix: "<div class=\"trix-content\">\n  <div><strong>Ethereum’s “Merge” is about to put every ether miner out of work</strong></div><div>\n<br>In a few weeks, Ethereum is slated to undergo the most significant change in its seven-year history. Until now, the Ethereum blockchain has been secured using a method called \"proof-of-work,\" which consumes more electricity than the entire nation of Belgium. Next month's switch to a new method called \"proof-of-stake\" is expected to cut Ethereum's energy consumption by a factor of 1,000.</div><div>\n<br>The stakes are high. A botched transition could mean chaos for the many crypto projects built on top of Ethereum. A smooth transition would be the culmination of years of careful planning by Ethereum's core developers. Over the last year, developers have repeatedly pushed back the date of \"the Merge\" to give themselves more time to prepare. They <a href=\"https://www.coindesk.com/tech/2022/08/11/ethereums-third-and-final-testnet-merge-goes-live-on-goerli/\">completed a final dress rehearsal</a> on August 10, clearing the way to make the switch in mid-September.<br><br>\n</div>\n</div>\n")
       CryptoNestedComment.create!(user: array[0], crypto_comment: crypto, content_trix: "Very good comments, the merge is gonna be such a big event for the crypto industry" )
     else
-      rand(1..3).times do
+      rand(1..2).times do
         crypto = CryptoComment.create!(user: array.sample, crypto: c, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div><ul><li>ut labore et dolore magna aliqua.&nbsp;</li><li>Ut enim ad minim veniam,&nbsp;</li><li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li></ul><div><a href="https://www.google.com/">Duis aute irure dolor in reprehenderit</a></div>')
         rand(0..2).times { CryptoNestedComment.create!(user: array.sample, crypto_comment: crypto, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div>') }
       end
@@ -31,11 +31,11 @@ def generate_crypto_ratings(cryptos, array)
   CryptoRating.destroy_all
 
   cryptos.each do |c|
-    array.each do |u|
+    array.last(4).each do |u|
       if u.username.downcase == "tan" && c.name.downcase == "polygon"
         puts "tan not rating polygon"
       else
-        CryptoRating.create!(user: u, crypto: c, rating: rand(2..5))
+        CryptoRating.create!(user: u, crypto: c, rating: rand(1..5))
       end
     end
   end
@@ -63,9 +63,9 @@ def generate_post_comments(posts, array)
       post = PostComment.create!(user: array[2], post: p, content_trix: 'So when do you actually expect that the DeFi industry will become active again?')
       PostNestedComment.create!(user: array[5], post_comment: post, content_trix: 'So you bring up an interesting point, the truth is DeFi is active discussed by the EU commision as we speak. Once these EU regulations and guidelines are clear we can definitely see some activity again')
     else
-      rand(1..7).times do
+      rand(1..6).times do
         post = PostComment.create!(user: array.sample, post: p, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div><ul><li>ut labore et dolore magna aliqua.&nbsp;</li><li>Ut enim ad minim veniam,&nbsp;</li><li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li></ul><div><a href="https://www.google.com/">Duis aute irure dolor in reprehenderit</a></div>')
-        rand(0..3).times { PostNestedComment.create!(user: array.sample, post_comment: post, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div>') }
+        rand(0..2).times { PostNestedComment.create!(user: array.sample, post_comment: post, content_trix: '<div>Lorem ipsum dolor sit amet,&nbsp;<strong>consectetur adipiscing elit,</strong>&nbsp;<em>sed do eiusmod tempor incididunt</em>&nbsp;</div>') }
       end
     end
   end

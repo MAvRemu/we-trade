@@ -7,6 +7,8 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
 
+gem "siwe_rails"
+
 gem "pundit"
 gem "devise"
 gem "cloudinary"
